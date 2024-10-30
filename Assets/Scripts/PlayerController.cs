@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsWalking", IsWalking);
         vertical=Input.GetAxis("Vertical");
         Climb();
+        // set the yVelocity in the animator
+        animator.SetFloat("yVelocity", rigidBody.velocity.y);
     }
 
     bool IsGrounded()
