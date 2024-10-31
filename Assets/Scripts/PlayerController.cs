@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private bool IsFacingRight = true;
     private bool isLadder = false;
     private bool isClimbing = false;
+    private bool doubleJump = false;
     private int score = 0;
     float vertical;
     void Start()
@@ -36,6 +37,20 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
+    {
+        Walking();
+        Jump();
+
+        animator.SetBool("IsGrounded", IsGrounded());
+
+        vertical=Input.GetAxis("Vertical");
+        Climb();
+        // set the yVelocity in the animator
+        animator.SetFloat("yVelocity", rigidBody.velocity.y);
+    }
+
+
+    void Walking()
     {
         IsWalking = false;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -52,27 +67,30 @@ public class PlayerController : MonoBehaviour
             IsFacingRight = true;
             Flip();
         }
-        Jump();
-        Debug.DrawRay(transform.position, rayLength * Vector3.down, Color.cyan, 1.0f, false);
-
-        animator.SetBool("IsGrounded", IsGrounded());
 
         animator.SetBool("IsWalking", IsWalking);
-        vertical=Input.GetAxis("Vertical");
-        Climb();
-        // set the yVelocity in the animator
-        animator.SetFloat("yVelocity", rigidBody.velocity.y);
     }
-
     bool IsGrounded()
     {
-        return Physics2D.Raycast(this.transform.position, Vector2.down, rayLength, groundLayer.value);
+        bool grounded =Physics2D.Raycast(this.transform.position, Vector2.down, rayLength, groundLayer.value);
+        if (grounded) {
+            doubleJump = true;
+        }
+        return grounded;
     }
 
     void Jump()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && IsGrounded())
+        bool jumpInput = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space);
+        bool grounded = IsGrounded();
+        if (jumpInput && (grounded || doubleJump))
         {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x,0);
+            if (!grounded)
+            {
+                doubleJump = false;
+            }
+            
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Debug.Log("jumping");
         }

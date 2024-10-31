@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private float cameraOffset = 2f;
-    [SerializeField] private float cameraSpeed = 4f;
+    [SerializeField] private float cameraSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +17,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 targetPos = new Vector3(player.transform.position.x, player.transform.position.y + cameraOffset, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPos, cameraSpeed * Time.deltaTime);
     }
 
     void FixedUpdate()
     {
-        Vector3 targetPos = new Vector3(player.transform.position.x, player.transform.position.y + cameraOffset, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPos, cameraSpeed * Time.deltaTime);
+        
     }
 }
