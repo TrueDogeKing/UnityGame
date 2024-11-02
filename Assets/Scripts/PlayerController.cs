@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private bool isClimbing = false;
     private bool doubleJump = false;
     private int score = 0;
+    private int lives = 3;
+    private Vector2 startPosition;
     float vertical;
     void Start()
     {
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        startPosition=transform.position;
     }
 
     void Update()
@@ -81,7 +84,8 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        bool jumpInput = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space);
+        // skakanie tylko na spacji
+        bool jumpInput = Input.GetKeyDown(KeyCode.Space);
         bool grounded = IsGrounded();
         if (jumpInput && (grounded || doubleJump))
         {
@@ -105,11 +109,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-
             animator.SetBool("IsClimbing", false);
         }
 
     }
+
 
     void Flip()
     {
@@ -120,21 +124,61 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Points(collision);
+
+        Ladder(collision);
+
+        Enemy(collision);
+    }
+
+    void Points(Collider2D collision)
+    {
         if (collision.CompareTag("Bonus"))
         {
             score += 50;
             Debug.Log("Score: " + score);
             collision.gameObject.SetActive(false);
         }
+    }
 
+    void Ladder(Collider2D collision)
+    {
         if (collision.CompareTag("Ladder"))
         {
             isLadder = true;
             animator.SetBool("IsLadder", isLadder);
         }
-
-
     }
+
+    void Enemy(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            if (transform.position.y> collision.gameObject.transform.position.y)
+            {
+                score += 50;
+                Debug.Log("Score: " + score);
+                Debug.Log("Killed an enemy");
+            }
+            else
+            {
+                lives--;
+                if(lives == 0)
+                {
+                    Debug.Log("End of game");
+                }
+                else
+                {
+                    Debug.Log("Lives left"+lives);
+                    transform.position = startPosition;
+                }
+
+            }
+        }
+    }
+
+
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))
