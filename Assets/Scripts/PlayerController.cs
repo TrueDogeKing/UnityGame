@@ -89,12 +89,11 @@ public class PlayerController : MonoBehaviour
         bool grounded = IsGrounded();
         if (jumpInput && (grounded || doubleJump))
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x,0);
             if (!grounded)
             {
                 doubleJump = false;
             }
-            
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             Debug.Log("jumping");
         }
@@ -129,6 +128,8 @@ public class PlayerController : MonoBehaviour
         Ladder(collision);
 
         Enemy(collision);
+
+        Spikes(collision);
     }
 
     void Points(Collider2D collision)
@@ -159,26 +160,39 @@ public class PlayerController : MonoBehaviour
                 score += 50;
                 Debug.Log("Score: " + score);
                 Debug.Log("Killed an enemy");
+
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+                rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
             else
             {
-                lives--;
-                if(lives == 0)
-                {
-                    Debug.Log("End of game");
-                }
-                else
-                {
-                    Debug.Log("Lives left"+lives);
-                    transform.position = startPosition;
-                }
-
+               LostLive();
             }
         }
     }
 
+    void Spikes(Collider2D collision)
+    {
+        if (collision.CompareTag("Spikes"))
+        {
+            Debug.Log("Spikes");
+            LostLive();
+        }
+    }
 
-
+    void LostLive()
+    {
+        lives--;
+        if (lives <= 0)
+        {
+            Debug.Log("End of game");
+        }
+        else
+        {
+            Debug.Log("Lives left" + lives);
+            transform.position = startPosition;
+        }
+    }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))

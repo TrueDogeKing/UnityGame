@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     private bool isMovingRight = true;
 
     private float startPositionX;
-    private float timeToDie = 2;
+    private float timeToDie = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
