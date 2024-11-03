@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool doubleJump = false;
     private int score = 0;
     private int lives = 3;
+    private float timeToDie = 1.1f;
+    bool hurt = false;
     private Vector2 startPosition;
     float vertical;
     void Start()
@@ -41,13 +43,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Walking();
-        Jump();
-
+        vertical = Input.GetAxis("Vertical");
         animator.SetBool("IsGrounded", IsGrounded());
+        if (!hurt)
+        {
+            Walking();
+            Jump();
+            Climb();
+        }
 
-        vertical=Input.GetAxis("Vertical");
-        Climb();
         // set the yVelocity in the animator
         animator.SetFloat("yVelocity", rigidBody.velocity.y);
     }
@@ -123,13 +127,16 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Points(collision);
+        if (!hurt)
+        {
+            Points(collision);
 
-        Ladder(collision);
+            Ladder(collision);
 
-        Enemy(collision);
+            Enemy(collision);
 
-        Spikes(collision);
+            Spikes(collision);
+        }
     }
 
     void Points(Collider2D collision)
@@ -183,16 +190,28 @@ public class PlayerController : MonoBehaviour
     void LostLive()
     {
         lives--;
-        if (lives <= 0)
+        if (lives < 0)
         {
             Debug.Log("End of game");
         }
         else
         {
+            hurt = true;
             Debug.Log("Lives left" + lives);
-            transform.position = startPosition;
+            StartCoroutine(HurtAnimation());
+            
         }
+
     }
+    private IEnumerator HurtAnimation()
+    {
+        animator.SetBool("IsHurt", true);
+        yield return new WaitForSeconds(timeToDie);
+        transform.position = startPosition;
+        animator.SetBool("IsHurt", false);
+        hurt = false;
+    }
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))
