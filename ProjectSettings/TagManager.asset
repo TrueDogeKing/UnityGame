@@ -8,6 +8,9 @@ TagManager:
   - Ladder
   - Enemy
   - Spikes
+  - Key
+  - LifePotion
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX

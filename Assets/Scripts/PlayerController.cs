@@ -24,8 +24,11 @@ public class PlayerController : MonoBehaviour
     private bool isClimbing = false;
     private bool doubleJump = false;
     private int score = 0;
-    private int lives = 3;
+    private int lifes = 3;
     private float timeToDie = 1.1f;
+
+    private int foundKeys = 0;
+    private const int keysNumber= 3;
     bool hurt = false;
     private Vector2 startPosition;
     float vertical;
@@ -136,6 +139,12 @@ public class PlayerController : MonoBehaviour
             Enemy(collision);
 
             Spikes(collision);
+
+            Key(collision);
+
+            LifePotion(collision);
+
+            MovingPlatform(collision);
         }
     }
 
@@ -173,7 +182,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-               LostLive();
+               LostLife();
             }
         }
     }
@@ -183,21 +192,49 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Spikes"))
         {
             Debug.Log("Spikes");
-            LostLive();
+            LostLife();
         }
     }
 
-    void LostLive()
+    void Key(Collider2D collision)
     {
-        lives--;
-        if (lives < 0)
+        if (collision.CompareTag("Key"))
+        {
+            foundKeys ++;
+            Debug.Log("Found keys: " + foundKeys);
+            collision.gameObject.SetActive(false);
+        }
+    }
+    void LifePotion(Collider2D collision)
+    {
+        if (collision.CompareTag("LifePotion"))
+        {
+            lifes++;
+            Debug.Log("lifes: " + lifes);
+            collision.gameObject.SetActive(false);
+        }
+    }
+    void MovingPlatform(Collider2D collision)
+    {
+        if (collision.CompareTag("MovingPlatform"))
+        {
+            transform.SetParent(collision.transform);
+
+
+        }
+    }
+
+    void LostLife()
+    {
+        lifes--;
+        if (lifes < 0)
         {
             Debug.Log("End of game");
         }
         else
         {
             hurt = true;
-            Debug.Log("Lives left" + lives);
+            Debug.Log("lifes left" + lifes);
             StartCoroutine(HurtAnimation());
             
         }
@@ -220,8 +257,17 @@ public class PlayerController : MonoBehaviour
             isClimbing = false;
             animator.SetBool("IsLadder", isLadder);
         }
+        PlatformExit(collision);
     }
+    void PlatformExit(Collider2D collision)
+    {
+        if (collision.CompareTag("MovingPlatform"))
+        {
+            transform.SetParent(null);
 
+
+        }
+    }
 
 
     void FixedUpdate()
@@ -237,4 +283,10 @@ public class PlayerController : MonoBehaviour
             rigidBody.gravityScale = playersGravity;
         }
     }
+
+     public bool IfKeysFound()
+    {
+        return foundKeys == keysNumber;
+    }
+
 }

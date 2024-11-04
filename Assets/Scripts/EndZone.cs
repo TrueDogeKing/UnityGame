@@ -6,6 +6,11 @@ public class EndZone : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("game over");
+        if (collision.CompareTag("Player"))
+            if (collision.gameObject.GetComponent<PlayerController>().IfKeysFound())
+                Debug.Log("game over");
+            else
+                Debug.Log("collect all keys");
+
     }
 }
