@@ -13,7 +13,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float moveRange = 1.0f;
     private Animator animator;
+
+
+    [SerializeField]
     private bool isMovingRight = true;
+
 
     private float startPositionX;
     private float timeToDie = 0.5f;
