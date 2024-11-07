@@ -62,12 +62,12 @@ public class GeneratedPlatforms : MonoBehaviour
         {
             float anglex = (i * Mathf.PI * 2 / platformsNum)+angle;
             platforms[i].transform.position = parentPosition + new Vector3(Mathf.Cos(anglex) * radius, Mathf.Sin(anglex) * radius, 0);
-            angle += (Time.deltaTime * speed)/64;
             if (angle >= 360f) {
                 angle = 0f;
                 Debug.Log("full rotation angle:" + angle);
                 Debug.Log("speed:" + speed);
             }
         }
+        angle += (Time.deltaTime * speed)/10;
     }
 }
