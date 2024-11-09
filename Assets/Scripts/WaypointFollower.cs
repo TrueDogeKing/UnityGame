@@ -9,7 +9,10 @@ public class WaypointFollower : MonoBehaviour
     [Range(0.01f, 20.0f)]
     [SerializeField]
     private float speed = 1.0f;
-
+    [Range(0.01f, 20.0f)]
+    [SerializeField]
+    private float waitTime = 0.0f;
+    bool waiting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +23,20 @@ public class WaypointFollower : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, speed * Time.deltaTime);
+        if (waiting)
+            return;
         if (Vector2.Distance(waypoints[currentWaypoint].transform.position, transform.position)<0.1f)
         {
-            currentWaypoint=(currentWaypoint+1)%waypoints.Length;
+            StartCoroutine(Waiting());
         }
 
     }
-
+    private IEnumerator Waiting()
+    {
+        waiting = true;
+        yield return new WaitForSeconds(waitTime);
+        currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+        waiting = false;
+    }
 
 }
