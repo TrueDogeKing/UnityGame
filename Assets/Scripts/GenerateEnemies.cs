@@ -21,7 +21,20 @@ public class GenerateEnemies : MonoBehaviour
     GameObject eaglePrefab;
 
 
+
     // Start is called before the first frame update
+    private void OnEnable()
+    {
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player.OnPlayerDeath += Respawn;
+    }
+
+    private void OnDisable()
+    {
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player.OnPlayerDeath -= Respawn;
+    }
+
     void Start()
     {
         enemies = new GameObject[enemiesNum];
@@ -48,5 +61,19 @@ public class GenerateEnemies : MonoBehaviour
     void Update()
     {
         
+
+
+    }
+
+    void Respawn()
+    {
+        for (int i = 0; i < enemiesNum; i++)
+        {
+            Destroy(enemies[i]);
+        }
+        for (int i = 0; i < enemiesNum; i++)
+        {
+            enemies[i] = Instantiate(eaglePrefab, positions[i], Quaternion.identity);
+        }
     }
 }

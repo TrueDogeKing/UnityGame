@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     bool hurt = false;
     private Vector2 startPosition;
     float vertical;
+    public event Action OnPlayerDeath;
     void Start()
     {
         
@@ -247,6 +249,7 @@ public class PlayerController : MonoBehaviour
         transform.position = startPosition;
         animator.SetBool("IsHurt", false);
         hurt = false;
+        OnPlayerDeath?.Invoke(); 
     }
 
     void OnTriggerExit2D(Collider2D collision)
