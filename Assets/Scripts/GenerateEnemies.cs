@@ -22,17 +22,19 @@ public class GenerateEnemies : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
+    private PlayerController player;
+
     private void OnEnable()
     {
-        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        player.OnPlayerDeath += Respawn;
+        player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerController>();
+        if (player != null)
+            player.OnPlayerDeath += Respawn;
     }
 
     private void OnDisable()
     {
-        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        player.OnPlayerDeath -= Respawn;
+        if (player != null)
+            player.OnPlayerDeath -= Respawn;
     }
 
     void Start()

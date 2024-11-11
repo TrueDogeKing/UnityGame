@@ -34,10 +34,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 startPosition;
     float vertical;
     public event Action OnPlayerDeath;
-    void Start()
-    {
-        
-    }
 
     void Awake()
     {
@@ -48,17 +44,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.currentGameState != GameManager.GameState.GAME)
+            return;
+        if (hurt)
+            return;
+
+        Status();
+
+        Walking();
+        Jump();
+        Climb();
+    }
+
+    void Status()
+    {
         vertical = Input.GetAxis("Vertical");
         animator.SetBool("IsGrounded", IsGrounded());
-        if (!hurt)
-        {
-            Walking();
-            Jump();
-            Climb();
-        }
-
         // set the yVelocity in the animator
         animator.SetFloat("yVelocity", rigidBody.velocity.y);
+
     }
 
 
@@ -82,6 +86,14 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("IsWalking", IsWalking);
     }
+
+    void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = IsFacingRight ? 1 : -1;
+        transform.localScale = scale;
+    }
+
     bool IsGrounded()
     {
         bool grounded =Physics2D.Raycast(this.transform.position, Vector2.down, rayLength, groundLayer.value);
@@ -104,7 +116,6 @@ public class PlayerController : MonoBehaviour
             }
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Debug.Log("jumping");
         }
     }
 
@@ -123,12 +134,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Flip()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x = IsFacingRight ? 1 : -1;
-        transform.localScale = scale;
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -267,7 +273,6 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("MovingPlatform"))
         {
             transform.SetParent(null);
-
 
         }
     }
