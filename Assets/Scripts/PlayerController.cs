@@ -138,22 +138,22 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!hurt)
-        {
-            Points(collision);
+        if (hurt)
+            return;
 
-            Ladder(collision);
+        Points(collision);
 
-            Enemy(collision);
+        Ladder(collision);
 
-            Spikes(collision);
+        Enemy(collision);
 
-            Key(collision);
+        Spikes(collision);
 
-            LifePotion(collision);
+        Key(collision);
 
-            MovingPlatform(collision);
-        }
+        LifePotion(collision);
+
+        MovingPlatform(collision);
     }
 
     void Points(Collider2D collision)
