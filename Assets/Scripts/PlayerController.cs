@@ -292,9 +292,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-     public bool IfKeysFound()
+     public bool IfKeysFound() 
     {
         return foundKeys == keysNumber;
     }
 
+    public int GetScore()
+    {
+        return score; 
+    }
 }
