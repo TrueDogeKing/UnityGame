@@ -27,8 +27,9 @@ public class PlayerController : MonoBehaviour
     private int score = 0;
     private int lifes = 3;
     private float timeToDie = 1.1f;
-
+    // should be deleted?
     private int foundKeys = 0;
+
     private const int keysNumber= 3;
     bool hurt = false;
     private Vector2 startPosition;
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Bonus"))
         {
             score += 50;
-            Debug.Log("Score: " + score);
+            GameManager.instance.UpdatePoints(score);
             collision.gameObject.SetActive(false);
         }
     }
@@ -182,9 +183,8 @@ public class PlayerController : MonoBehaviour
             if (transform.position.y> collision.gameObject.transform.position.y)
             {
                 score += 50;
-                Debug.Log("Score: " + score);
-                Debug.Log("Killed an enemy");
-
+                GameManager.instance.UpdatePoints(score);
+                GameManager.instance.UpdateEnemies();
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
@@ -208,8 +208,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Key"))
         {
-            foundKeys ++;
-            Debug.Log("Found keys: " + foundKeys);
+            int id = GetColorId(collision);
+            GameManager.instance.AddKeys(id);
             collision.gameObject.SetActive(false);
         }
     }
@@ -218,6 +218,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("LifePotion"))
         {
             lifes++;
+            GameManager.instance.UpdatePlayerLifes(lifes);
             Debug.Log("lifes: " + lifes);
             collision.gameObject.SetActive(false);
         }
@@ -227,14 +228,13 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("MovingPlatform"))
         {
             transform.SetParent(collision.transform);
-
-
         }
     }
 
     void LostLife()
     {
         lifes--;
+        GameManager.instance.UpdatePlayerLifes(lifes);
         if (lifes < 0)
         {
             Debug.Log("End of game");
@@ -292,13 +292,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    int GetColorId(Collider2D collision)
+    {
+        SpriteRenderer spriteRenderer = collision.GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+            return 0;
+
+        Color color = spriteRenderer.color;
+
+        if (color == Color.white)
+            return 0;
+        if (color == Color.red)
+            return 1;
+        if (color == new Color(1f, 1f, 0f))
+            return 2;
+
+        return 0; 
+    }
+
      public bool IfKeysFound() 
     {
         return foundKeys == keysNumber;
     }
 
-    public int GetScore()
-    {
-        return score; 
-    }
 }
