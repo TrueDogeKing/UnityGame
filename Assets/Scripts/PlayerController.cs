@@ -13,6 +13,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpForce = 15.0f;
 
+    [SerializeField]
+    private AudioClip deathSound;
+
+    [SerializeField]
+    private AudioClip bonusSound;
+
+    [SerializeField]
+    private AudioClip keySound;
+
+    [SerializeField]
+    private AudioClip deathEagleSound;
+
+    private AudioSource source;
+
     private float rayLength = 1.1f;
     private float playersGravity = 4;
     public LayerMask groundLayer;
@@ -45,6 +59,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         startPosition = transform.position;
+        source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -171,6 +186,7 @@ public class PlayerController : MonoBehaviour
             score += 50;
             GameManager.instance.UpdatePoints(score);
             collision.gameObject.SetActive(false);
+            source.PlayOneShot(bonusSound, AudioListener.volume);
         }
     }
 
@@ -194,6 +210,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.UpdateEnemies();
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                source.PlayOneShot(deathEagleSound, AudioListener.volume);
             }
             else
             {
@@ -218,6 +235,7 @@ public class PlayerController : MonoBehaviour
             int id = GetColorId(collision);
             GameManager.instance.AddKeys(id);
             collision.gameObject.SetActive(false);
+            source.PlayOneShot(keySound, AudioListener.volume);
         }
     }
     void LifePotion(Collider2D collision)
@@ -251,6 +269,7 @@ public class PlayerController : MonoBehaviour
             hurt = true;
             Debug.Log("lives left" + lives);
             StartCoroutine(HurtAnimation());
+            source.PlayOneShot(deathSound, AudioListener.volume);
 
         }
 
