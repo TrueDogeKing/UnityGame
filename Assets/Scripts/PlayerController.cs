@@ -20,17 +20,21 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidBody;
     private Animator animator;
     private bool IsWalking;
-    private bool IsFacingRight = true;
+    public bool IsFacingRight
+    {
+        get;
+        private set;
+    } = true;
     private bool isLadder = false;
     private bool isClimbing = false;
     private bool doubleJump = false;
     private int score = 0;
-    private int lifes = 3;
+    private int lives = 3;
     private float timeToDie = 1.1f;
     // should be deleted?
     private int foundKeys = 0;
 
-    private const int keysNumber= 3;
+    private const int keysNumber = 3;
     bool hurt = false;
     private Vector2 startPosition;
     float vertical;
@@ -40,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        startPosition=transform.position;
+        startPosition = transform.position;
     }
 
     void Update()
@@ -97,8 +101,9 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
-        bool grounded =Physics2D.Raycast(this.transform.position, Vector2.down, rayLength, groundLayer.value);
-        if (grounded) {
+        bool grounded = Physics2D.Raycast(this.transform.position, Vector2.down, rayLength, groundLayer.value);
+        if (grounded)
+        {
             doubleJump = true;
         }
         return grounded;
@@ -122,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     void Climb()
     {
-        if (isLadder && vertical!=0)
+        if (isLadder && vertical != 0)
         {
             isClimbing = true;
             animator.SetBool("IsClimbing", isClimbing);
@@ -135,7 +140,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -180,7 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            if (transform.position.y> collision.gameObject.transform.position.y)
+            if (transform.position.y > collision.gameObject.transform.position.y)
             {
                 score += 50;
                 GameManager.instance.UpdatePoints(score);
@@ -190,7 +195,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-               LostLife();
+                LostLife();
             }
         }
     }
@@ -217,9 +222,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("LifePotion"))
         {
-            lifes++;
-            GameManager.instance.UpdatePlayerLifes(lifes);
-            Debug.Log("lifes: " + lifes);
+            lives++;
+            GameManager.instance.UpdatePlayerLives(lives);
+            Debug.Log("lives: " + lives);
             collision.gameObject.SetActive(false);
         }
     }
@@ -233,18 +238,18 @@ public class PlayerController : MonoBehaviour
 
     void LostLife()
     {
-        lifes--;
-        GameManager.instance.UpdatePlayerLifes(lifes);
-        if (lifes < 0)
+        lives--;
+        GameManager.instance.UpdatePlayerLives(lives);
+        if (lives < 0)
         {
             Debug.Log("End of game");
         }
         else
         {
             hurt = true;
-            Debug.Log("lifes left" + lifes);
+            Debug.Log("lives left" + lives);
             StartCoroutine(HurtAnimation());
-            
+
         }
 
     }
@@ -255,7 +260,7 @@ public class PlayerController : MonoBehaviour
         transform.position = startPosition;
         animator.SetBool("IsHurt", false);
         hurt = false;
-        OnPlayerDeath?.Invoke(); 
+        OnPlayerDeath?.Invoke();
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -283,7 +288,7 @@ public class PlayerController : MonoBehaviour
         if (isClimbing)
         {
             rigidBody.gravityScale = 0;
-            rigidBody.velocity= new Vector2(rigidBody.velocity.x, vertical*moveSpeed);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, vertical * moveSpeed);
 
         }
         else
@@ -307,10 +312,10 @@ public class PlayerController : MonoBehaviour
         if (color == new Color(1f, 1f, 0f))
             return 2;
 
-        return 0; 
+        return 0;
     }
 
-     public bool IfKeysFound() 
+    public bool IfKeysFound()
     {
         return foundKeys == keysNumber;
     }

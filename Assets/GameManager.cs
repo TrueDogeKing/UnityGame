@@ -8,9 +8,9 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    private int keysFound=0;
+    private int keysFound = 0;
 
-    public TMP_Text lifesText;
+    public TMP_Text livesText;
     // Enum for game states with custom names for Unity Inspector
     public enum GameState
     {
@@ -49,8 +49,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        for (int i = 0; i< 3; i++)
-            keysTab[i].color=Color.grey;
+        for (int i = 0; i < keysTab.Length; i++)
+            keysTab[i].color = Color.grey;
 
     }
 
@@ -97,12 +97,15 @@ public class GameManager : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        // Calculate minutes and seconds
-        int minutes = Mathf.FloorToInt(timer / 60); // Divide total seconds by 60 to get minutes
-        int seconds = Mathf.FloorToInt(timer % 60); // Use modulo to get remaining seconds
+        if (timeText)
+        {
+            // Calculate minutes and seconds
+            int minutes = Mathf.FloorToInt(timer / 60); // Divide total seconds by 60 to get minutes
+            int seconds = Mathf.FloorToInt(timer % 60); // Use modulo to get remaining seconds
 
-        // Format the time in "minutes:seconds" format and display it
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            // Format the time in "minutes:seconds" format and display it
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
 
     public void AddKeys(int id)
@@ -129,10 +132,9 @@ public class GameManager : MonoBehaviour
         keysFound++;
     }
 
-    public void UpdatePlayerLifes(int newLifes)
+    public void UpdatePlayerLives(int newLives)
     {
-        lifesText.text = newLifes.ToString();
-        lifesText.text += "-ECTS";
+        livesText.text = "ECTS: " + newLives.ToString();
     }
     public void UpdatePoints(int score)
     {

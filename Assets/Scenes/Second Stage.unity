@@ -3199,7 +3199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb2aa16822bbf848b2dac75af0b024f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifesText: {fileID: 0}
+  livesText: {fileID: 0}
   gameCanvas: {fileID: 0}
   keysTab: []
   enemiesDefeated: {fileID: 0}
