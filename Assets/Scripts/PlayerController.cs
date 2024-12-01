@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private int lives = 3;
     private float timeToDie = 1.1f;
     // should be deleted?
-    private int foundKeys = 0;
+    private int foundKeys = 3;
 
     private const int keysNumber = 3;
     bool hurt = false;
@@ -160,6 +160,8 @@ public class PlayerController : MonoBehaviour
         LifePotion(collision);
 
         MovingPlatform(collision);
+
+        Finnished(collision);
     }
 
     void Points(Collider2D collision)
@@ -253,6 +255,16 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    void Finnished(Collider2D collision)
+    {
+        if (collision.CompareTag("Exit"))
+        {
+            score += 100 * lives;
+            GameManager.instance.LevelCompleted();
+        }
+    }
+
     private IEnumerator HurtAnimation()
     {
         animator.SetBool("IsHurt", true);

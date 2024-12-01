@@ -11829,59 +11829,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268341192}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1350012412
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1350012414}
-  - component: {fileID: 1350012413}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1350012413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350012412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcb2aa16822bbf848b2dac75af0b024f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  livesText: {fileID: 814301491}
-  gameCanvas: {fileID: 1111857426}
-  keysTab: []
-  enemiesDefeated: {fileID: 0}
-  scoreText: {fileID: 0}
-  timeText: {fileID: 0}
-  pauseMenuCanvas: {fileID: 0}
-  LevelCompletedCanvas: {fileID: 0}
-  currentGameState: 0
---- !u!4 &1350012414
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1350012412}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.539319, y: 9.890963, z: 2802.7444}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1395615300
 GameObject:
   m_ObjectHideFlags: 0
@@ -12474,7 +12421,6 @@ SceneRoots:
   - {fileID: 1760160259}
   - {fileID: 266910709}
   - {fileID: 919263055}
-  - {fileID: 1350012414}
   - {fileID: 211787073}
   - {fileID: 385705137}
   - {fileID: 419485673}

@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     {
         [InspectorName("Gameplay")] GAME,
         [InspectorName("Pause")] PAUSE_MENU,
-        [InspectorName("Level completed or in progress")] LEVEL_COMPLETED
+        [InspectorName("Level completed or in progress")] LEVEL_COMPLETED,
+        [InspectorName("Options")] OPTIONS
     }
     public Canvas gameCanvas;
     public Image[] keysTab;
@@ -27,22 +28,25 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text scoreText;
     public TMP_Text timeText;
+    public TMP_Text jakoscText;
     float timer = 0f;
 
     public Canvas pauseMenuCanvas;
     public Canvas LevelCompletedCanvas;
-
+    public Canvas OptionsCanvas;
+    public int currentScore = 0;
     // Public variable to track the current game state
     public GameState currentGameState = GameState.PAUSE_MENU;
 
     // Singleton instance of GameManager
     public static GameManager instance;
-
+    private Scene currentScene;
     // Awake method to ensure only one instance of GameManager exists
     void Awake()
     {
-        if (pauseMenuCanvas != null)
-            pauseMenuCanvas.enabled = false;
+        pauseMenuCanvas.enabled = false;
+        LevelCompletedCanvas.enabled = false;
+        OptionsCanvas.enabled = false;
         if (instance == null)
         {
             instance = this;
@@ -56,16 +60,17 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < keysTab.Length; i++)
             keysTab[i].color = Color.grey;
 
+        SetVolume(1);
     }
 
     // Method to set the game state
     public void SetGameState(GameState newGameState)
     {
         currentGameState = newGameState;
-        if (pauseMenuCanvas != null)
-            pauseMenuCanvas.enabled = (currentGameState == GameState.PAUSE_MENU);
-        if (gameCanvas != null)
-            gameCanvas.enabled = (currentGameState == GameState.GAME);
+        pauseMenuCanvas.enabled = (currentGameState == GameState.PAUSE_MENU);
+        gameCanvas.enabled = (currentGameState == GameState.GAME);
+        LevelCompletedCanvas.enabled = (currentGameState == GameState.LEVEL_COMPLETED);
+        OptionsCanvas.enabled = (currentGameState == GameState.OPTIONS);
 
     }
 
@@ -89,6 +94,26 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.LEVEL_COMPLETED);
     }
 
+    public void Options()
+    {
+        SetGameState(GameState.OPTIONS);
+    }
+
+    public void QualityUp()
+    {
+        QualitySettings.IncreaseLevel();
+        jakoscText.text = "Jakosc: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
+    }
+    public void QualityDown()
+    {
+        QualitySettings.DecreaseLevel();
+        jakoscText.text = "Jakosc: " + QualitySettings.names[QualitySettings.GetQualityLevel()];
+    }
+    public void SetVolume(float volume)
+    {
+        Debug.Log("volume:"+volume);
+        AudioListener.volume = volume;
+    }
     // Update is called once per frame
     void Update()
     {

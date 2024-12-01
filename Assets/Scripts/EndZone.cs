@@ -8,7 +8,7 @@ public class EndZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
             if (collision.gameObject.GetComponent<PlayerController>().IfKeysFound())
-                Debug.Log("game over");
+                Debug.Log("finnished stage");
             else
                 Debug.Log("collect all keys");
 

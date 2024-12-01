@@ -12,6 +12,7 @@ TagManager:
   - LifePotion
   - MovingPlatform
   - Book
+  - Exit
   layers:
   - Default
   - TransparentFX
