@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeText;
     float timer = 0f;
 
+    public Canvas pauseMenuCanvas;
+    public Canvas LevelCompletedCanvas;
 
     // Public variable to track the current game state
     public GameState currentGameState = GameState.PAUSE_MENU;
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
     // Awake method to ensure only one instance of GameManager exists
     void Awake()
     {
+        if (pauseMenuCanvas != null)
+            pauseMenuCanvas.enabled = false;
         if (instance == null)
         {
             instance = this;
@@ -58,7 +62,10 @@ public class GameManager : MonoBehaviour
     public void SetGameState(GameState newGameState)
     {
         currentGameState = newGameState;
-        //gameCanvas.enabled;
+        if (pauseMenuCanvas != null)
+            pauseMenuCanvas.enabled = (currentGameState == GameState.PAUSE_MENU);
+        if (gameCanvas != null)
+            gameCanvas.enabled = (currentGameState == GameState.GAME);
 
     }
 
@@ -146,4 +153,22 @@ public class GameManager : MonoBehaviour
         enemiesKilled++;
         enemiesDefeated.text = enemiesKilled.ToString();
     }
+
+    public void OnResumeButtonClicked()
+    {
+        InGame();
+    }
+
+    public void OnRestartButtonClicked()
+    {
+        Time.timeScale = 1.0f; // Reset time scale to normal
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnReturnToMainMenuButtonClicked()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
