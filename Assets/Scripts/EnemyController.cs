@@ -17,10 +17,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private bool isMovingRight = true;
 
-    [SerializeField]
-    private AudioClip deathSound;
-
-    private AudioSource source;
 
     private float startPositionX;
     private float timeToDie = 0.5f;
@@ -30,7 +26,6 @@ public class EnemyController : MonoBehaviour
         //rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         startPositionX = this.transform.position.x;
-        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -99,7 +94,6 @@ public class EnemyController : MonoBehaviour
             {
                 animator.SetBool("isDead", true);
                 StartCoroutine(KillOnAnimationEnd());
-                source.PlayOneShot(deathSound, AudioListener.volume);
             }
         }
     }
