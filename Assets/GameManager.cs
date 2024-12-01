@@ -17,8 +17,23 @@ public class GameManager : MonoBehaviour
         [InspectorName("Gameplay")] GAME,
         [InspectorName("Pause")] PAUSE_MENU,
         [InspectorName("Level completed or in progress")] LEVEL_COMPLETED,
-        [InspectorName("Options")] OPTIONS
+        [InspectorName("Options")] OPTIONS,
     }
+    // Enum for game modes
+    public enum GameMode
+    {
+        [InspectorName("Platformer")] PLATFORMER,
+        [InspectorName("Boss")] BOSS,
+    }
+    // Enum for boss fight states
+    public enum BossFightState
+    {
+        [InspectorName("Aiming Angle")] AIM_ANGLE,
+        [InspectorName("Aiming Force")] AIM_FORCE,
+        [InspectorName("Throwing")] THROW,
+        [InspectorName("Drinking Beer")] DRINKING,
+    }
+
     public Canvas gameCanvas;
     public Image[] keysTab;
 
@@ -29,7 +44,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text timeText;
     public TMP_Text jakoscText;
-    float timer = 0f;
+    public float timer = 0f;
 
     public Canvas pauseMenuCanvas;
     public Canvas LevelCompletedCanvas;
@@ -37,6 +52,11 @@ public class GameManager : MonoBehaviour
     public int currentScore = 0;
     // Public variable to track the current game state
     public GameState currentGameState = GameState.PAUSE_MENU;
+    public GameMode currentGameMode = GameMode.PLATFORMER;
+
+    // Variables for boss fight
+    public bool isPlayersTurn = true;
+    public BossFightState bossFightState = BossFightState.AIM_ANGLE;
 
     // Singleton instance of GameManager
     public static GameManager instance;
@@ -44,9 +64,6 @@ public class GameManager : MonoBehaviour
     // Awake method to ensure only one instance of GameManager exists
     void Awake()
     {
-        pauseMenuCanvas.enabled = false;
-        LevelCompletedCanvas.enabled = false;
-        OptionsCanvas.enabled = false;
         if (instance == null)
         {
             instance = this;
@@ -56,6 +73,10 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Duplicated Game Manager", gameObject);
             Destroy(gameObject);
         }
+
+        pauseMenuCanvas.enabled = false;
+        LevelCompletedCanvas.enabled = false;
+        OptionsCanvas.enabled = false;
 
         for (int i = 0; i < keysTab.Length; i++)
             keysTab[i].color = Color.grey;
@@ -71,7 +92,6 @@ public class GameManager : MonoBehaviour
         gameCanvas.enabled = (currentGameState == GameState.GAME);
         LevelCompletedCanvas.enabled = (currentGameState == GameState.LEVEL_COMPLETED);
         OptionsCanvas.enabled = (currentGameState == GameState.OPTIONS);
-
     }
 
     // Public methods to set specific game states
@@ -111,7 +131,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetVolume(float volume)
     {
-        Debug.Log("volume:"+volume);
+        Debug.Log("volume:" + volume);
         AudioListener.volume = volume;
     }
     // Update is called once per frame
