@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         pauseMenuCanvas.enabled = false;
         LevelCompletedCanvas.enabled = false;
         OptionsCanvas.enabled = false;
+
         if (instance == null)
         {
             instance = this;
@@ -96,6 +97,8 @@ public class GameManager : MonoBehaviour
 
     public void Options()
     {
+        Time.timeScale = 0.0f;
+        AudioListener.pause = false;
         SetGameState(GameState.OPTIONS);
     }
 
