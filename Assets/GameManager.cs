@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < keysTab.Length; i++)
             keysTab[i].color = Color.grey;
 
-        SetVolume(1);
     }
 
     // Method to set the game state
