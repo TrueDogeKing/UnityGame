@@ -14,7 +14,6 @@ public class EnemyController : MonoBehaviour
     private float moveRange = 1.0f;
     private Animator animator;
 
-
     [SerializeField]
     private bool isMovingRight = true;
 

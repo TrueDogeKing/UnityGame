@@ -98,14 +98,14 @@ public class GameManager : MonoBehaviour
     public void PauseMenu()
     {
         Time.timeScale = 0.0f;
-        AudioListener.pause = false;
+        AudioListener.pause = true;
         SetGameState(GameState.PAUSE_MENU);
     }
 
     public void InGame()
     {
         Time.timeScale = 1.0f;
-        AudioListener.pause = true;
+        AudioListener.pause = false;
         SetGameState(GameState.GAME);
     }
 
@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
 
     public void Options()
     {
+        Time.timeScale = 0.0f;
+        AudioListener.pause = true;
         SetGameState(GameState.OPTIONS);
     }
 

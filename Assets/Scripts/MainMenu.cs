@@ -10,11 +10,12 @@ using UnityEditor; // Required for Editor-specific functionality
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+    public Canvas OptionsCanvas;
+    public Canvas MenuCanvas;
 
     void Start()
     {
-        
+        OptionsCanvas.enabled = false;
     }
 
     // Update is called once per frame
@@ -23,7 +24,16 @@ public class MainMenu : MonoBehaviour
         
     }
 
-
+    public void Options()
+    {
+        MenuCanvas.enabled = false;
+        OptionsCanvas.enabled = true;
+    }
+    public void MainMenuButton()
+    {
+        MenuCanvas.enabled = true;
+        OptionsCanvas.enabled = false;
+    }
     public void Onlevel1ButtonPressed()
     {
         SceneManager.LoadScene("First Stage");
