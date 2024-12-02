@@ -282,6 +282,8 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Exit"))
         {
             score += 100 * lives;
+            Debug.Log("score:"+score);
+            GameManager.instance.UpdatePoints(score);
             GameManager.instance.LevelCompleted();
         }
     }

@@ -42,8 +42,10 @@ public class GameManager : MonoBehaviour
     private int enemiesKilled = 0;
 
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
     public TMP_Text timeText;
     public TMP_Text jakoscText;
+    public TMP_Text endScore;
     public float timer = 0f;
 
     public Canvas pauseMenuCanvas;
@@ -111,6 +113,31 @@ public class GameManager : MonoBehaviour
     public void LevelCompleted()
     {
         SetGameState(GameState.LEVEL_COMPLETED);
+
+        currentScene = SceneManager.GetActiveScene();
+        // Check if the current scene is "First Stage"
+        if (currentScene.name == "First Stage")
+        {
+
+            // Retrieve the high score for "Level1" from PlayerPrefs
+            int highScore = PlayerPrefs.GetInt("HighScore_Level1", 0);
+
+            // Check if the current score exceeds the saved high score
+            Debug.Log("current score:"+ currentScore);
+            if (currentScore > highScore)
+            {
+                highScore = currentScore; // Update the high score
+                PlayerPrefs.SetInt("HighScore_Level1", highScore); // Save the new high score
+            }
+
+            // Update the UI with the current score and high score
+            if (endScore != null)
+                endScore.text = "Score: " + currentScore;
+
+            if (highScoreText != null)
+                highScoreText.text = "High Score: " + highScore;
+        }
+
     }
 
     public void Options()
@@ -132,7 +159,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetVolume(float volume)
     {
-        Debug.Log("volume:" + volume);
         AudioListener.volume = volume;
     }
     // Update is called once per frame
@@ -191,6 +217,7 @@ public class GameManager : MonoBehaviour
     }
     public void UpdatePoints(int score)
     {
+        currentScore = score;
         scoreText.text = score.ToString();
     }
 
