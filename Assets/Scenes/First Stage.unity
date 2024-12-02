@@ -64702,6 +64702,7 @@ MonoBehaviour:
   OptionsCanvas: {fileID: 1563204283}
   currentScore: 0
   currentGameState: 0
+  currentGameMode: 0
 --- !u!4 &2049111177
 Transform:
   m_ObjectHideFlags: 0

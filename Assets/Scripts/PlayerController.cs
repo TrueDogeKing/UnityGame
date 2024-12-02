@@ -66,6 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.instance.currentGameState != GameManager.GameState.GAME)
             return;
+        if (GameManager.instance.currentGameMode != GameManager.GameMode.PLATFORMER)
+            return;
         if (hurt)
             return;
 
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
         Climb();
     }
 
-    void Status()
+    public void Status()
     {
         vertical = Input.GetAxis("Vertical");
         animator.SetBool("IsGrounded", IsGrounded());
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Walking()
+    public void Walking()
     {
         IsWalking = false;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
