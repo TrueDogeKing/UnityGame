@@ -179,6 +179,8 @@ public class PlayerController : MonoBehaviour
         MovingPlatform(collision);
 
         Finnished(collision);
+
+        CheckPoint(collision);
     }
 
     void Points(Collider2D collision)
@@ -284,7 +286,16 @@ public class PlayerController : MonoBehaviour
             score += 100 * lives;
             Debug.Log("score:"+score);
             GameManager.instance.UpdatePoints(score);
+            // go to next scenes
             GameManager.instance.LevelCompleted();
+        }
+    }
+
+    void CheckPoint(Collider2D collision)
+    {
+        if (collision.CompareTag("Respawn"))
+        {
+            startPosition = transform.position;
         }
     }
 

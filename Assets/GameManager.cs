@@ -214,6 +214,8 @@ public class GameManager : MonoBehaviour
     public void UpdatePlayerLives(int newLives)
     {
         livesText.text = "ECTS: " + newLives.ToString();
+        if (newLives == 0)
+            LevelCompleted();
     }
     public void UpdatePoints(int score)
     {
