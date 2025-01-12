@@ -171,6 +171,11 @@ public class GameManager : MonoBehaviour
 
             if (highScoreText != null)
                 highScoreText.text = "High Score: " + highScore;
+
+
+            PlayerPrefs.SetInt("Lives", 3);
+            PlayerPrefs.SetInt("CurrentScore", 0);
+            PlayerPrefs.SetInt("EnemiesKilled", 0);
         }
 
 
