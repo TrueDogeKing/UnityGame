@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3946150410304911682
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024453264649570592, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_Name
+      value: Squirrel Beggining Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3702890824161712233}
+    - targetCorrespondingSourceObject: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6883952616682119535}
+  m_SourcePrefab: {fileID: 100100000, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+--- !u!1 &5182741993136008454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+  m_PrefabInstance: {fileID: 3946150410304911682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3702890824161712233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182741993136008454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee4fafb9c8db0046b6b103dd12da37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogueLines:
+    - character:
+        name: Wiewior
+        icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
+      line: "Hej! S\u0142ysza\u0142em, \u017Ce masz d\u0142ug 12 ects, jeszcze 3
+        i odpadniesz z uczelni!"
+    - character:
+        name: Lisek Piwoszek
+        icon: {fileID: 21300000, guid: bf32473070f0a094cbf95271c0bb93b1, type: 3}
+      line: "Sk\u0105d to wiesz??"
+    - character:
+        name: Wiewior
+        icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
+      line: "Nie obawiaj si\u0119 jestem tu \u017Ceby ci pom\xF3c. S\u0142ysza\u0142e\u015B
+        mo\u017Ce o TALF?"
+    - character:
+        name: Lisek Piwoszek
+        icon: {fileID: 21300000, guid: ae1f407f8af5d1645bdcdf615aaff01e, type: 3}
+      line: Nie
+    - character:
+        name: Wiewior
+        icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
+      line: " TALF to Tajna Akademicka Liga Flanek w kt\xF3rej mo\u017Cesz gra\u0107
+        z wyk\u0142adowcami w flanki o punkty ECTS"
+    - character:
+        name: Lisek Piwoszek
+        icon: {fileID: 21300000, guid: ae1f407f8af5d1645bdcdf615aaff01e, type: 3}
+      line: Super powiedz mi gdzie to jest
+    - character:
+        name: Wiewior
+        icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
+      line: "Ok spokojnie. Tylko uwa\u017Caj, droga do wyk\u0142adowc\xF3w nie jest
+        prosta a ka\u017Cde potkni\u0119cie b\u0119dzie kosztowa\u0107 ci\u0119 punkt
+        ECTS wi\u0119c du\u017Co mo\u017Cesz zyska\u0107 ale jeszcze wi\u0119cej
+        straci\u0107."
+    - character:
+        name: Wiewior
+        icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
+      line: "Wystarczy, \u017Ce b\u0119dziesz pod\u0105\u017Ca\u0142 za kuflami piwa
+        i pami\u0119taj o patykach je\u017Celi nie zbierzesz wszystkich 3 patyk\xF3w
+        to nie wpuszcz\u0105 ci\u0119 do pojedynku. Powodzenia"
+--- !u!61 &6883952616682119535
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5182741993136008454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.625, y: 3.625}
+    newSize: {x: 5.625, y: 3.625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10, y: 6.7}
+  m_EdgeRadius: 0
