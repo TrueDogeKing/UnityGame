@@ -6873,8 +6873,8 @@ MonoBehaviour:
     Dowiaduje si\u0119 jednak, \u017Ce wyk\u0142adowcy organizuj\u0105 tajne turnieje
     flanek, podczas kt\xF3rych rozdaj\u0105 punkty ECTS!\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: db77a06c123fcb24fa0a4e66818b6387, type: 2}
-  m_sharedMaterial: {fileID: 7320386817946916633, guid: db77a06c123fcb24fa0a4e66818b6387, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10673,7 +10673,7 @@ Transform:
   m_GameObject: {fileID: 1022035929}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 103.4, y: 63.44, z: 0}
+  m_LocalPosition: {x: 103.71, y: 63.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -65409,6 +65409,11 @@ MonoBehaviour:
   currentGameMode: 0
   isPlayersTurn: 1
   bossFightState: 0
+  playerBeer: 100
+  bossBeer: 100
+  turnNumber: 0
+  playerBeerBar: {fileID: 0}
+  bossBeerBar: {fileID: 0}
 --- !u!4 &2049111177
 Transform:
   m_ObjectHideFlags: 0

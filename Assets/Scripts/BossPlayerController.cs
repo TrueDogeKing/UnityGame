@@ -47,6 +47,8 @@ public class BossPlayerController : MonoBehaviour
 
     void Update()
     {
+
+
         if (GameManager.instance.currentGameState == GameManager.GameState.PAUSE_MENU)
             return;
         if (GameManager.instance.currentGameState != GameManager.GameState.GAME)
@@ -54,12 +56,6 @@ public class BossPlayerController : MonoBehaviour
         if (GameManager.instance.currentGameMode != GameManager.GameMode.BOSS)
             return;
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            GameManager.instance.bossFightState = GameManager.BossFightState.AIM_ANGLE;
-            can.transform.position = new Vector3(0, -2.5f, 0);
-            can.transform.rotation = Quaternion.identity;
-        }
 
         playerController.Status();
 

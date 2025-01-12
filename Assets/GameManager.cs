@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int keysFound = 3;
+    private int keysFound = 0;
     private int lives = 3;
     public TMP_Text livesText;
     // Enum for game states with custom names for Unity Inspector
@@ -161,9 +161,22 @@ public class GameManager : MonoBehaviour
 
         }
 
-        Debug.Log("Not First stage");
-        // Check if the current scene is "Second Stage"
-        if (currentScene.name == "Second Stage" || lives == 0)
+        if (currentScene.name == "Second Stage" && lives > 0)
+        {
+            keysFound = 0;
+            PlayerPrefs.SetInt("Lives", lives);
+            PlayerPrefs.SetInt("CurrentScore", currentScore);
+            PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
+            SceneManager.LoadScene("Boss Room");
+            SetGameState(GameState.GAME);
+            return;
+
+        }
+
+
+
+
+        if (currentScene.name == "Boss Room" || lives == 0)
         {
 
             // Retrieve the high score for "Level1" from PlayerPrefs
@@ -219,6 +232,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (currentGameState == GameState.GAME)
@@ -242,6 +257,17 @@ public class GameManager : MonoBehaviour
 
         if (currentScene.name == "Boss Room")
         {
+            if (playerBeer < 0)
+            {
+                lives += 3;
+                SceneManager.LoadScene("Second Stage");
+            }
+
+            if (bossBeer < 0)
+            {
+                lives --;
+                SceneManager.LoadScene("Boss Room");
+            }
             if (playerBeerBar)
             {
                 playerBeerBar.localScale = new Vector2(playerBeer / 100f, 1f);
@@ -252,6 +278,8 @@ public class GameManager : MonoBehaviour
                 bossBeerBar.localScale = new Vector2(bossBeer / 100f, 1f);
             }
         }
+
+       
     }
 
     public void AddKeys(int id)

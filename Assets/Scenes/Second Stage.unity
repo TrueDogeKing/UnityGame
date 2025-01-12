@@ -57357,11 +57357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9168351779378706717, guid: d1b2f619e66825a4f8b06a72f7e658fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 205.8934
+      value: 205.92
       objectReference: {fileID: 0}
     - target: {fileID: 9168351779378706717, guid: d1b2f619e66825a4f8b06a72f7e658fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 56.254753
+      value: 56.32
       objectReference: {fileID: 0}
     - target: {fileID: 9168351779378706717, guid: d1b2f619e66825a4f8b06a72f7e658fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -75967,6 +75967,11 @@ MonoBehaviour:
   currentGameMode: 0
   isPlayersTurn: 1
   bossFightState: 0
+  playerBeer: 100
+  bossBeer: 100
+  turnNumber: 0
+  playerBeerBar: {fileID: 0}
+  bossBeerBar: {fileID: 0}
 --- !u!4 &1337630036
 Transform:
   m_ObjectHideFlags: 0
@@ -76377,8 +76382,8 @@ MonoBehaviour:
     Dowiaduje si\u0119 jednak, \u017Ce wyk\u0142adowcy organizuj\u0105 tajne turnieje
     flanek, podczas kt\xF3rych rozdaj\u0105 punkty ECTS!\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: db77a06c123fcb24fa0a4e66818b6387, type: 2}
-  m_sharedMaterial: {fileID: 7320386817946916633, guid: db77a06c123fcb24fa0a4e66818b6387, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
