@@ -27,6 +27,12 @@ public class BossRoomStick : MonoBehaviour
         float angle = 45.2f + (hit ? 0f : 2f);
         float force = 15.8f - (hit ? 0f : 2f);
 
+        if (GameManager.instance.turnNumber > 0 && throwDir == StickThrowDirection.RIGHT)
+        {
+            force -= 1.25f;
+        }
+
+        Debug.Log("Throw():");
         Debug.Log("Throwing stick with angle: " + angle + " and force: " + force);
         Debug.Log("Hit: " + hit);
 
@@ -37,5 +43,21 @@ public class BossRoomStick : MonoBehaviour
         stickRigidbody.angularVelocity = 0;
         stickRigidbody.AddForce(new Vector2(dir * Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * force, ForceMode2D.Impulse);
         stickRigidbody.AddTorque(dir * 0.5f, ForceMode2D.Impulse);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            BossController bossController = collision.GetComponent<BossController>();
+            transform.position = new Vector3(4f, 12f, 0f);
+            bossController.hasStick = true;
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            BossPlayerController playerController = collision.GetComponent<BossPlayerController>();
+            transform.position = new Vector3(4f, 12f, 0f);
+            playerController.hasStick = true;
+        }
     }
 }

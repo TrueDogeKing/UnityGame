@@ -13,6 +13,8 @@ TagManager:
   - MovingPlatform
   - Book
   - Exit
+  - Stick
+  - Can
   layers:
   - Default
   - TransparentFX

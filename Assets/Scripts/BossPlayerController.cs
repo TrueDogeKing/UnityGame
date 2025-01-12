@@ -13,6 +13,9 @@ public class BossPlayerController : MonoBehaviour
     private GameObject can;
 
     [SerializeField]
+    private BossController bossController;
+
+    [SerializeField]
     private BossRoomStick stick;
 
     [SerializeField]
@@ -29,9 +32,17 @@ public class BossPlayerController : MonoBehaviour
     private float throwForceDir = 1f;
     private float throwForce = 10f;
 
+    public bool hasStick = false;
+    public bool hasCan = false;
+    private bool canDrink = false;
+    private bool isComingBack = false;
+
+    private Rigidbody2D rigidbody2d;
+
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -43,16 +54,21 @@ public class BossPlayerController : MonoBehaviour
         if (GameManager.instance.currentGameMode != GameManager.GameMode.BOSS)
             return;
 
-        if (!GameManager.instance.isPlayersTurn)
-            return;
-
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             GameManager.instance.bossFightState = GameManager.BossFightState.AIM_ANGLE;
             can.transform.position = new Vector3(0, -2.5f, 0);
             can.transform.rotation = Quaternion.identity;
         }
+
+        playerController.Status();
+
+        Run();
+
+        if (!GameManager.instance.isPlayersTurn)
+            return;
+
+        rigidbody2d.simulated = false;
 
         Drink();
         AimForce();
@@ -88,6 +104,52 @@ public class BossPlayerController : MonoBehaviour
 
             bool hit = ThrowValue() < 0.5f;
             stick.Throw(StickThrowDirection.RIGHT, hit);
+
+            StartCoroutine(WaitForThrow());
+        }
+    }
+
+    IEnumerator WaitForThrow()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        GameManager.instance.bossFightState = GameManager.BossFightState.DRINKING;
+        canDrink = can.transform.position.x > 0.5f || can.transform.position.x < -0.5f;
+        bossController.InitTurn();
+    }
+
+    void Run()
+    {
+        if (GameManager.instance.bossFightState != GameManager.BossFightState.DRINKING)
+            return;
+
+        if (GameManager.instance.isPlayersTurn)
+            return;
+
+        rigidbody2d.simulated = !isComingBack;
+        playerController.Walking();
+
+        if (!isComingBack && hasCan && hasStick && transform.position.x > -0.1 && transform.position.x < 0.1)
+        {
+            rigidbody2d.simulated = false;
+            isComingBack = true;
+            can.transform.position = new Vector3(0, -2.5f, 0);
+            can.transform.rotation = Quaternion.identity;
+        }
+
+        if (isComingBack && transform.position.x > -14.1 && transform.position.x < -13.9)
+        {
+            GameManager.instance.turnNumber++;
+            GameManager.instance.isPlayersTurn = true;
+            GameManager.instance.bossFightState = GameManager.BossFightState.AIM_ANGLE;
+            transform.position = new Vector3(-14f, -1.94f, 0);
+            transform.localScale = new Vector3(1, 1, 1);
+            Animator animator = GetComponent<Animator>();
+            animator.SetBool("IsWalking", false);
+            hasStick = false;
+            hasCan = false;
+            canDrink = false;
+            isComingBack = false;
         }
     }
 
@@ -96,8 +158,13 @@ public class BossPlayerController : MonoBehaviour
         if (GameManager.instance.bossFightState != GameManager.BossFightState.DRINKING)
             return;
 
-        playerController.Status();
-        playerController.Walking();
+        if (!GameManager.instance.isPlayersTurn)
+            return;
+
+        if (canDrink && Input.GetKeyDown(KeyCode.E))
+        {
+            GameManager.instance.playerBeer -= 1f;
+        }
     }
 
     void UpdateThrowIndicator(bool ignoreForce)
