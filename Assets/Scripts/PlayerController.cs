@@ -346,4 +346,9 @@ public class PlayerController : MonoBehaviour
         return foundKeys == keysNumber;
     }
 
+    public bool IsHurt()
+    {
+        return hurt;
+    }
+
 }

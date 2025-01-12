@@ -12,8 +12,10 @@ public class CannonController : MonoBehaviour
 
     private float fireTimer = 0f;                         // Tracks time since the last shot
     private Rigidbody2D playerRb;                         // Rigidbody2D of the player for velocity calculation
-
+    private PlayerController playerScript;
+     
     [SerializeField] private Rigidbody2D platformRb;
+    bool isShootingPaused = false;
 
     void Start()
     {
@@ -27,16 +29,28 @@ public class CannonController : MonoBehaviour
         if (player != null)
         {
             playerRb = player.GetComponent<Rigidbody2D>();
+            playerScript = player.GetComponent<PlayerController>();
         }
 
     }
 
     void Update()
     {
+        if (isShootingPaused)
+            return;
+
+
+
         if (player != null)
         {
             AimAtPlayer();
             FireAtPlayer();
+
+            if (playerScript.IsHurt())
+            {
+                if(!isShootingPaused)
+                    StartCoroutine(PauseShooting(3f));
+            }
         }
     }
 
@@ -113,5 +127,12 @@ public class CannonController : MonoBehaviour
 
     return new Vector3(futurePosition.x, futurePosition.y, 0); // Return as Vector3
 
+    }
+
+    IEnumerator PauseShooting(float pauseDuration)
+    {
+        isShootingPaused = true;
+        yield return new WaitForSeconds(pauseDuration);
+        isShootingPaused = false;
     }
 }

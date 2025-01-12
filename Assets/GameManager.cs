@@ -139,7 +139,6 @@ public class GameManager : MonoBehaviour
         if (currentScene.name == "First Stage" && lives > 0)
         {
             keysFound = 0;
-            Debug.Log("current score:" + currentScore);
             PlayerPrefs.SetInt("Lives", lives);
             PlayerPrefs.SetInt("CurrentScore", currentScore);
             PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
