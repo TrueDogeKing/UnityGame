@@ -13,6 +13,7 @@ public class CannonController : MonoBehaviour
     private float fireTimer = 0f;                         // Tracks time since the last shot
     private Rigidbody2D playerRb;                         // Rigidbody2D of the player for velocity calculation
 
+    [SerializeField] private Rigidbody2D platformRb;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class CannonController : MonoBehaviour
         {
             playerRb = player.GetComponent<Rigidbody2D>();
         }
+
     }
 
     void Update()
@@ -70,7 +72,7 @@ public class CannonController : MonoBehaviour
         if (projectilePrefab != null && firePoint != null)
         {
             // Instantiate the projectile at the fire point
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position+new Vector3(2, 0, 0), firePoint.rotation);
 
             // Get the Rigidbody2D component of the projectile
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
@@ -82,7 +84,7 @@ public class CannonController : MonoBehaviour
 
                 //rb.velocity = new Vector2(rb.velocity.x, 0);
                 
-                rb.velocity = firePoint.right * projectileSpeed;
+                rb.velocity = firePoint.right * projectileSpeed+ new Vector3(platformRb.velocity.x, platformRb.velocity.y);
                 //rb.velocity = new Vector2(0, 0);
             }
         }
@@ -96,14 +98,20 @@ public class CannonController : MonoBehaviour
             return player.position;
         }
 
-        // Calculate the time it would take for the projectile to reach the player
-        Vector3 directionToPlayer = player.position - transform.position;
-        float distance = directionToPlayer.magnitude;
-        float timeToReach = distance / projectileSpeed;
+        Vector2 platformVelocity = platformRb != null ? platformRb.velocity : Vector2.zero;
 
-        // Predict the player's future position based on their velocity
-        Vector3 futurePosition = (Vector3)playerRb.velocity * timeToReach + player.position;
+    // Calculate the relative velocity (player's velocity minus platform's velocity)
+    Vector2 relativePlayerVelocity = playerRb.velocity - platformVelocity;
+    //Vector2 relativePlayerVelocity = playerRb.velocity;
+    // Calculate the time it would take for the projectile to reach the player's current position
+    Vector2 directionToPlayer = player.position - transform.position;
+    float distance = directionToPlayer.magnitude;
+    float timeToReach = distance / projectileSpeed;
 
-        return futurePosition;
+    // Predict the player's future position based on their relative velocity
+    Vector2 futurePosition = (Vector2)player.position + relativePlayerVelocity * timeToReach;
+
+    return new Vector3(futurePosition.x, futurePosition.y, 0); // Return as Vector3
+
     }
 }

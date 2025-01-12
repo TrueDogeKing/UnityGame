@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int keysFound = 0;
-
+    private int keysFound = 3;
+    private int lives = 3;
     public TMP_Text livesText;
     // Enum for game states with custom names for Unity Inspector
     public enum GameState
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     // Awake method to ensure only one instance of GameManager exists
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -76,12 +77,27 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.name != "First Stage")
+        {
+            currentScore = PlayerPrefs.GetInt("CurrentScore", 0);  // Default to 0 if not found
+            lives = PlayerPrefs.GetInt("Lives", 0);  // Default to 0 if not found
+            enemiesKilled = PlayerPrefs.GetInt("EnemiesKilled", 0);  // Default to 0 if not found
+            Debug.Log("score from previous game:" + currentScore);
+
+            livesText.text = "ECTS: " + lives.ToString();
+            scoreText.text = currentScore.ToString();
+            enemiesDefeated.text = enemiesKilled.ToString();
+        }
+
         pauseMenuCanvas.enabled = false;
         LevelCompletedCanvas.enabled = false;
         OptionsCanvas.enabled = false;
 
         for (int i = 0; i < keysTab.Length; i++)
             keysTab[i].color = Color.grey;
+
 
     }
 
@@ -112,18 +128,37 @@ public class GameManager : MonoBehaviour
 
     public void LevelCompleted()
     {
+
+        Debug.Log("Entered LevelCompleted");
+
+
         SetGameState(GameState.LEVEL_COMPLETED);
 
         currentScene = SceneManager.GetActiveScene();
-        // Check if the current scene is "First Stage"
-        if (currentScene.name == "First Stage")
+
+        if (currentScene.name == "First Stage" && lives > 0)
+        {
+            keysFound = 0;
+            Debug.Log("current score:" + currentScore);
+            PlayerPrefs.SetInt("Lives", lives);
+            PlayerPrefs.SetInt("CurrentScore", currentScore);
+            PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
+            SceneManager.LoadScene("Second Stage");
+            SetGameState(GameState.GAME);
+            return;
+
+        }
+
+        Debug.Log("Not First stage");
+        // Check if the current scene is "Second Stage"
+        if (currentScene.name == "Second Stage" || lives == 0)
         {
 
             // Retrieve the high score for "Level1" from PlayerPrefs
             int highScore = PlayerPrefs.GetInt("HighScore_Level1", 0);
-
+            currentScore += 100 * lives;
             // Check if the current score exceeds the saved high score
-            Debug.Log("current score:"+ currentScore);
+            Debug.Log("current score:" + currentScore);
             if (currentScore > highScore)
             {
                 highScore = currentScore; // Update the high score
@@ -137,6 +172,8 @@ public class GameManager : MonoBehaviour
             if (highScoreText != null)
                 highScoreText.text = "High Score: " + highScore;
         }
+
+
 
     }
 
@@ -211,16 +248,22 @@ public class GameManager : MonoBehaviour
         keysFound++;
     }
 
-    public void UpdatePlayerLives(int newLives)
+    public void UpdatePlayerLives(bool lostLive)
     {
-        livesText.text = "ECTS: " + newLives.ToString();
-        if (newLives == 0)
+        if (lostLive)
+            lives--;
+        else
+            lives++;
+
+
+        livesText.text = "ECTS: " + lives.ToString();
+        if (lives == 0)
             LevelCompleted();
     }
     public void UpdatePoints(int score)
     {
-        currentScore = score;
-        scoreText.text = score.ToString();
+        currentScore += score;
+        scoreText.text = currentScore.ToString();
     }
 
     public void UpdateEnemies()

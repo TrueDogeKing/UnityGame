@@ -42,8 +42,6 @@ public class PlayerController : MonoBehaviour
     private bool isLadder = false;
     private bool isClimbing = false;
     private bool doubleJump = false;
-    private int score = 0;
-    private int lives = 3;
     private float timeToDie = 1.1f;
     // should be deleted?
     private int foundKeys = 3;
@@ -187,8 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Bonus"))
         {
-            score += 50;
-            GameManager.instance.UpdatePoints(score);
+            GameManager.instance.UpdatePoints(50);
             collision.gameObject.SetActive(false);
             source.PlayOneShot(bonusSound, AudioListener.volume);
         }
@@ -209,8 +206,7 @@ public class PlayerController : MonoBehaviour
         {
             if (transform.position.y > collision.gameObject.transform.position.y)
             {
-                score += 50;
-                GameManager.instance.UpdatePoints(score);
+                GameManager.instance.UpdatePoints(50);
                 GameManager.instance.UpdateEnemies();
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -246,9 +242,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("LifePotion"))
         {
-            lives++;
-            GameManager.instance.UpdatePlayerLives(lives);
-            Debug.Log("lives: " + lives);
+            GameManager.instance.UpdatePlayerLives(false);
             collision.gameObject.SetActive(false);
         }
     }
@@ -262,20 +256,10 @@ public class PlayerController : MonoBehaviour
 
     void LostLife()
     {
-        lives--;
-        GameManager.instance.UpdatePlayerLives(lives);
-        if (lives < 0)
-        {
-            Debug.Log("End of game");
-        }
-        else
-        {
-            hurt = true;
-            Debug.Log("lives left" + lives);
-            StartCoroutine(HurtAnimation());
-            source.PlayOneShot(deathSound, AudioListener.volume);
-
-        }
+        GameManager.instance.UpdatePlayerLives(true);
+        hurt = true;
+        StartCoroutine(HurtAnimation());
+        source.PlayOneShot(deathSound, AudioListener.volume);
 
     }
 
@@ -283,10 +267,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Exit"))
         {
-            score += 100 * lives;
-            Debug.Log("score:"+score);
-            GameManager.instance.UpdatePoints(score);
-            // go to next scenes
             GameManager.instance.LevelCompleted();
         }
     }
