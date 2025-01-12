@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         if (currentScene.name != "First Stage")
         {
             currentScore = PlayerPrefs.GetInt("CurrentScore", 0);  // Default to 0 if not found
-            lives = PlayerPrefs.GetInt("Lives", 0);  // Default to 0 if not found
+            lives = PlayerPrefs.GetInt("Lives", 3);  // Default to 0 if not found
             enemiesKilled = PlayerPrefs.GetInt("EnemiesKilled", 0);  // Default to 0 if not found
             Debug.Log("score from previous game:" + currentScore);
 

@@ -2652,6 +2652,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3514657424318868621, guid: 2e8a84497fe733f479e0ab264ed484ee, type: 3}
+      propertyPath: m_text
+      value: 'Lisek Piwoszek: Pierwsza Sesja'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492673796475265649, guid: 2e8a84497fe733f479e0ab264ed484ee, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6964623749924949437, guid: 2e8a84497fe733f479e0ab264ed484ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0
