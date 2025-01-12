@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     public BossFightState bossFightState = BossFightState.AIM_ANGLE;
     public float playerBeer = 100f;
     public float bossBeer = 100f;
+    public int turnNumber = 0;
 
     public RectTransform playerBeerBar;
     public RectTransform bossBeerBar;

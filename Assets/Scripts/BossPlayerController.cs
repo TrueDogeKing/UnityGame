@@ -139,6 +139,7 @@ public class BossPlayerController : MonoBehaviour
 
         if (isComingBack && transform.position.x > -14.1 && transform.position.x < -13.9)
         {
+            GameManager.instance.turnNumber++;
             GameManager.instance.isPlayersTurn = true;
             GameManager.instance.bossFightState = GameManager.BossFightState.AIM_ANGLE;
             transform.position = new Vector3(-14f, -1.94f, 0);

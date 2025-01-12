@@ -76,7 +76,7 @@ public class BossController : MonoBehaviour
             dir = 1f;
 
         transform.position += dir * Vector3.right * speed * Time.deltaTime;
-        transform.localScale = new Vector3(dir * 1.5f, 1.5f, 1.5f);
+        transform.localScale = new Vector3(-dir * 1.5f, 1.5f, 1.5f);
 
         if (!isComingBack && hasCan && hasStick && transform.position.x < 0.1f && transform.position.x > -0.1f)
         {
@@ -92,6 +92,7 @@ public class BossController : MonoBehaviour
             GameManager.instance.isPlayersTurn = false;
             GameManager.instance.bossFightState = GameManager.BossFightState.THROW;
             transform.position = new Vector3(14f, -2.24f, 0);
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             StartCoroutine(Throw());
         }
     }

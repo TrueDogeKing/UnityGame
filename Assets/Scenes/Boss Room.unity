@@ -1775,10 +1775,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3b61e085b9d42459ad704f1e97c943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drinkRate: 2
-  throwAccuracy: 0
-  speedRange: {x: 20, y: 20}
-  speed: 20
+  drinkRate: 1
+  throwAccuracy: 0.6
+  speedRange: {x: 6, y: 8}
+  speed: 0
   hasStick: 0
   hasCan: 0
   isComingBack: 0
@@ -2124,6 +2124,7 @@ MonoBehaviour:
   bossFightState: 0
   playerBeer: 100
   bossBeer: 100
+  turnNumber: 0
   playerBeerBar: {fileID: 476884106}
   bossBeerBar: {fileID: 264843980}
 --- !u!4 &499408046
