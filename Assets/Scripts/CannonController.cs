@@ -81,8 +81,9 @@ public class CannonController : MonoBehaviour
                 //rb.velocity = firePoint.right * projectileSpeed;
 
                 //rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.velocity = new Vector2(0, 0);
+                
                 rb.velocity = firePoint.right * projectileSpeed;
+                //rb.velocity = new Vector2(0, 0);
             }
         }
     }
