@@ -562,9 +562,10 @@ GameObject:
   - component: {fileID: 211787072}
   - component: {fileID: 211787075}
   - component: {fileID: 211787074}
+  - component: {fileID: 211787077}
   m_Layer: 0
   m_Name: Can
-  m_TagString: Untagged
+  m_TagString: Can
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,6 +709,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &211787077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211787071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78676d827b478e0468fca89e5370b6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &239277881
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +866,7 @@ GameObject:
   - component: {fileID: 264843982}
   - component: {fileID: 264843981}
   m_Layer: 5
-  m_Name: Background (1)
+  m_Name: BossBeer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1419,7 +1432,7 @@ GameObject:
   - component: {fileID: 385705139}
   m_Layer: 7
   m_Name: Stick
-  m_TagString: Untagged
+  m_TagString: Stick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1653,9 +1666,11 @@ GameObject:
   - component: {fileID: 419485673}
   - component: {fileID: 419485672}
   - component: {fileID: 419485671}
+  - component: {fileID: 419485674}
+  - component: {fileID: 419485676}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1742,12 +1757,79 @@ Transform:
   m_GameObject: {fileID: 419485670}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.358678, y: -2.24, z: 0}
+  m_LocalPosition: {x: 14, y: -2.24, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &419485674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419485670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3b61e085b9d42459ad704f1e97c943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drinkRate: 2
+  throwAccuracy: 0
+  speedRange: {x: 20, y: 20}
+  speed: 20
+  hasStick: 0
+  hasCan: 0
+  isComingBack: 0
+  canDrink: 0
+  stick: {fileID: 385705139}
+  can: {fileID: 211787071}
+--- !u!61 &419485676
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419485670}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &458962183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,7 +2012,7 @@ GameObject:
   - component: {fileID: 476884108}
   - component: {fileID: 476884107}
   m_Layer: 5
-  m_Name: Background (1)
+  m_Name: PlayerBeer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2027,8 +2109,10 @@ MonoBehaviour:
   keysTab: []
   enemiesDefeated: {fileID: 0}
   scoreText: {fileID: 0}
+  highScoreText: {fileID: 0}
   timeText: {fileID: 0}
   jakoscText: {fileID: 0}
+  endScore: {fileID: 0}
   timer: 0
   pauseMenuCanvas: {fileID: 1924576010}
   LevelCompletedCanvas: {fileID: 784419149}
@@ -2038,6 +2122,10 @@ MonoBehaviour:
   currentGameMode: 1
   isPlayersTurn: 1
   bossFightState: 0
+  playerBeer: 100
+  bossBeer: 100
+  playerBeerBar: {fileID: 476884106}
+  bossBeerBar: {fileID: 264843980}
 --- !u!4 &499408046
 Transform:
   m_ObjectHideFlags: 0
@@ -2063,11 +2151,11 @@ GameObject:
   m_Component:
   - component: {fileID: 506468934}
   - component: {fileID: 506468933}
-  - component: {fileID: 506468932}
-  - component: {fileID: 506468931}
   - component: {fileID: 506468930}
   - component: {fileID: 506468929}
   - component: {fileID: 506468935}
+  - component: {fileID: 506468936}
+  - component: {fileID: 506468937}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2110,71 +2198,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpForce: 18
+  deathSound: {fileID: 0}
+  bonusSound: {fileID: 0}
+  keySound: {fileID: 0}
+  deathEagleSound: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
---- !u!70 &506468931
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506468928}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: -0.37}
-  m_Size: {x: 0.8, y: 1.3}
-  m_Direction: 0
---- !u!50 &506468932
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506468928}
-  m_BodyType: 0
-  m_Simulated: 0
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 4
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 6
 --- !u!212 &506468933
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2257,11 +2287,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwIndicator: {fileID: 458962183}
   can: {fileID: 211787071}
+  bossController: {fileID: 419485674}
   stick: {fileID: 385705139}
   throwAngleRange: {x: 20, y: 60}
   throwAngleSpeed: 60
   throwForceRange: {x: 10, y: 20}
   throwForceSpeed: 30
+  hasStick: 0
+  hasCan: 0
+--- !u!61 &506468936
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506468928}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00000047683716, y: -0.23035836}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.0625, y: 2}
+    newSize: {x: 0.33, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5006514, y: 1.853919}
+  m_EdgeRadius: 0
+--- !u!50 &506468937
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506468928}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &733357975
 GameObject:
   m_ObjectHideFlags: 0

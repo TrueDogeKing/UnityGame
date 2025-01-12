@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
     // Variables for boss fight
     public bool isPlayersTurn = true;
     public BossFightState bossFightState = BossFightState.AIM_ANGLE;
+    public float playerBeer = 100f;
+    public float bossBeer = 100f;
+
+    public RectTransform playerBeerBar;
+    public RectTransform bossBeerBar;
 
     // Singleton instance of GameManager
     public static GameManager instance;
@@ -87,8 +92,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("score from previous game:" + currentScore);
 
             livesText.text = "ECTS: " + lives.ToString();
-            scoreText.text = currentScore.ToString();
-            enemiesDefeated.text = enemiesKilled.ToString();
+
+            playerBeer = 100f;
+            bossBeer = 100f;
+
+            if (currentScene.name != "Boss Room")
+            {
+                scoreText.text = currentScore.ToString();
+                enemiesDefeated.text = enemiesKilled.ToString();
+            }
         }
 
         pauseMenuCanvas.enabled = false;
@@ -225,6 +237,19 @@ public class GameManager : MonoBehaviour
 
             // Format the time in "minutes:seconds" format and display it
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+
+        if (currentScene.name == "Boss Room")
+        {
+            if (playerBeerBar)
+            {
+                playerBeerBar.localScale = new Vector2(playerBeer / 100f, 1f);
+            }
+
+            if (bossBeerBar)
+            {
+                bossBeerBar.localScale = new Vector2(bossBeer / 100f, 1f);
+            }
         }
     }
 
