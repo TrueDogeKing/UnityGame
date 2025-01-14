@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private int keysFound = 0;
     private int lives = 3;
     public TMP_Text livesText;
+    private bool flankiFinnished = false;
     // Enum for game states with custom names for Unity Inspector
     public enum GameState
     {
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
     // Awake method to ensure only one instance of GameManager exists
     void Awake()
     {
+
 
         if (instance == null)
         {
@@ -255,12 +257,13 @@ public class GameManager : MonoBehaviour
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
 
-        if (currentScene.name == "Boss Room")
+        if (currentScene.name == "Boss Room" && !flankiFinnished)
         {
             if (playerBeer < 0)
             {
                 lives += 3;
-                SceneManager.LoadScene("Second Stage");
+                flankiFinnished = true;
+                LevelCompleted();
             }
 
             if (bossBeer < 0)
