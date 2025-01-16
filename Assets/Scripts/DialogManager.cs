@@ -94,7 +94,8 @@ public class DialogManager : MonoBehaviour
 
         StopCoroutine(typingCoroutine);
 
-        TypeSentenceCoroutine=StartCoroutine(TypeSentence(currentLine));
+        TypeSentenceCoroutine =StartCoroutine(TypeSentence(currentLine));
+       
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
@@ -103,6 +104,7 @@ public class DialogManager : MonoBehaviour
         dialogueArea.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
+            ResetAutoHideTimer();
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
