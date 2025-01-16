@@ -123,10 +123,7 @@ public class DialogManager : MonoBehaviour
             return;
 
         if (Input.GetKeyDown(KeyCode.E))
-        {
-            ResetAutoHideTimer();
             DisplayNextDialogueLine();
-        }
     }
 
     private void ResetAutoHideTimer()
@@ -141,7 +138,6 @@ public class DialogManager : MonoBehaviour
     {
         yield return new WaitForSeconds(idleTimeToHide);
 
-        EndDialogue();
         if (isDialogueActive)
         {
             EndDialogue();
