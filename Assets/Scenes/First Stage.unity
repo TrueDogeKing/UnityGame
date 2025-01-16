@@ -1606,41 +1606,146 @@ MonoBehaviour:
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Hej! S\u0142ysza\u0142em, \u017Ce masz d\u0142ug 12 ects, jeszcze 3
         i odpadniesz z uczelni!"
+      audioClip: {fileID: 8300000, guid: ee882d979d3a48740af66d03c43734db, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: bf32473070f0a094cbf95271c0bb93b1, type: 3}
       line: "Sk\u0105d to wiesz??"
+      audioClip: {fileID: 8300000, guid: 9bf1596c7ed0d9647852b1162251ae65, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Nie obawiaj si\u0119 jestem tu \u017Ceby ci pom\xF3c. S\u0142ysza\u0142e\u015B
         mo\u017Ce o TALF?"
+      audioClip: {fileID: 8300000, guid: e886ce7f0a24c9f4396265151588b441, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: ae1f407f8af5d1645bdcdf615aaff01e, type: 3}
       line: Nie
+      audioClip: {fileID: 8300000, guid: 1e6a7163d33bee346a56efc11ae37b89, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: " TALF to Tajna Akademicka Liga Flanek w kt\xF3rej mo\u017Cesz gra\u0107
-        z wyk\u0142adowcami w flanki o punkty ECTS"
+        z wyk\u0142adowcami o punkty ECTS!"
+      audioClip: {fileID: 8300000, guid: 59e844bc78a531d4194e013030353c9e, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: ae1f407f8af5d1645bdcdf615aaff01e, type: 3}
       line: Super powiedz mi gdzie to jest
+      audioClip: {fileID: 8300000, guid: 77570a58585582a418d7e886be039535, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Ok spokojnie. Tylko uwa\u017Caj, droga do wyk\u0142adowc\xF3w nie jest
-        prosta a ka\u017Cde potkni\u0119cie b\u0119dzie kosztowa\u0107 ci\u0119 punkt
-        ECTS wi\u0119c du\u017Co mo\u017Cesz zyska\u0107 ale jeszcze wi\u0119cej
+        prosta, a ka\u017Cde potkni\u0119cie b\u0119dzie kosztowa\u0107 ci\u0119
+        punkt ECTS, wi\u0119c du\u017Co mo\u017Cesz zyska\u0107, ale jeszcze wi\u0119cej
         straci\u0107."
+      audioClip: {fileID: 8300000, guid: 4d876e2a4dea4c84ab313fb81461f478, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Wystarczy, \u017Ce b\u0119dziesz pod\u0105\u017Ca\u0142 za kuflami piwa
-        i pami\u0119taj o patykach je\u017Celi nie zbierzesz wszystkich 3 patyk\xF3w
-        to nie wpuszcz\u0105 ci\u0119 do pojedynku. Powodzenia"
+        tylko nie wypij ich za du\u017Co bo nie dotrwasz do flanek. Pami\u0119taj
+        o patykach je\u017Celi nie zbierzesz wszystkich 3 patyk\xF3w to nie wpuszcz\u0105
+        ci\u0119 do pojedynku. Powodzenia"
+      audioClip: {fileID: 0}
+--- !u!82 &114658584
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114658578}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &115454042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,6 +3332,7 @@ MonoBehaviour:
         name: Student
         icon: {fileID: 21300000, guid: 9d96818e7b4ba4fedb4f5e03a7ffe741, type: 3}
       line: No Gdzie to jest??
+      audioClip: {fileID: 0}
 --- !u!4 &211238146
 Transform:
   m_ObjectHideFlags: 0
@@ -8184,6 +8290,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 114658580}
+    - targetCorrespondingSourceObject: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 114658584}
   m_SourcePrefab: {fileID: 100100000, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
 --- !u!1 &731494962
 GameObject:
@@ -12008,10 +12117,12 @@ MonoBehaviour:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: 'Hej! udalo ci sie. '
+      audioClip: {fileID: 0}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: bf32473070f0a094cbf95271c0bb93b1, type: 3}
       line: yep
+      audioClip: {fileID: 0}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
@@ -12019,6 +12130,7 @@ MonoBehaviour:
         biblioteki na g\xF3rze jest pok\xF3j wyk\u0142adowcy. Tylko uwa\u017Caj na
         g\xF3rze rozw\u015Bcieczony student rzuca ksi\u0105\u017Ckami a droga tam
         prowadzi po lataj\u0105cych platformach"
+      audioClip: {fileID: 0}
 --- !u!1 &1065911277
 GameObject:
   m_ObjectHideFlags: 0
@@ -18202,7 +18314,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b6dc04f2884eb5b46b675390b1e75e84, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
