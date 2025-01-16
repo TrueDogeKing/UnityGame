@@ -25,6 +25,13 @@ public class DialogManager : MonoBehaviour
 
     private DialogueLine currentLine;
 
+    private Coroutine autoHideCoroutine;
+    private const float idleTimeToHide = 10f; // Time in seconds to hide the dialog
+    private Coroutine typingCoroutine;
+    private Coroutine TypeSentenceCoroutine;
+
+    private Vector2 targetIconSize = new Vector2(100f, 100f); // Width and Height in pixels
+
     private void Awake()
     {
         typingSpeed = typingSpeed / 360;
@@ -36,11 +43,13 @@ public class DialogManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        ResetAutoHideTimer();
+
         isDialogueActive = true;
 
         animator.SetTrigger("show");
 
-        StartCoroutine(WaitForAnim());
+        typingCoroutine=StartCoroutine(WaitForAnim());
 
         lines.Clear();
 
@@ -50,6 +59,7 @@ public class DialogManager : MonoBehaviour
         }
 
         DisplayNextDialogueLine();
+
     }
 
     IEnumerator WaitForAnim()
@@ -62,7 +72,8 @@ public class DialogManager : MonoBehaviour
 
         if (isTyping)
         {
-            StopAllCoroutines();
+            StopCoroutine(typingCoroutine);
+            StopCoroutine(TypeSentenceCoroutine);
             dialogueArea.text = currentLine.line; 
             isTyping = false;
             return;
@@ -79,9 +90,11 @@ public class DialogManager : MonoBehaviour
         characterIcon.sprite = currentLine.character.icon;
         characterName.text = currentLine.character.name;
 
-        StopAllCoroutines();
+        NormalizeSpriteSize(characterIcon); // Ensure sprite is scaled correctly
 
-        StartCoroutine(TypeSentence(currentLine));
+        StopCoroutine(typingCoroutine);
+
+        TypeSentenceCoroutine=StartCoroutine(TypeSentence(currentLine));
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
@@ -107,7 +120,49 @@ public class DialogManager : MonoBehaviour
         if (!isDialogueActive)
             return;
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ResetAutoHideTimer();
             DisplayNextDialogueLine();
+        }
     }
+
+    private void ResetAutoHideTimer()
+    {
+        if (autoHideCoroutine != null)
+            StopCoroutine(autoHideCoroutine);
+
+        autoHideCoroutine = StartCoroutine(AutoHideDialog());
+    }
+
+    IEnumerator AutoHideDialog()
+    {
+        yield return new WaitForSeconds(idleTimeToHide);
+
+        EndDialogue();
+        if (isDialogueActive)
+        {
+            EndDialogue();
+        }
+    }
+
+    private void NormalizeSpriteSize(Image icon)
+    {
+        if (icon.sprite == null)
+            return;
+
+        // Set a uniform target size for all icons
+        float targetSize = Mathf.Min(targetIconSize.x, targetIconSize.y);
+
+        // Get the dimensions of the sprite
+        float originalWidth = icon.sprite.bounds.size.x;
+        float originalHeight = icon.sprite.bounds.size.y;
+
+        // Calculate the scale to fit the sprite within the target size while maintaining aspect ratio
+        float scale = targetSize / Mathf.Max(originalWidth, originalHeight);
+
+        // Apply the calculated scale to the Image's RectTransform
+        icon.rectTransform.sizeDelta = new Vector2(originalWidth * scale, originalHeight * scale);
+    }
+
 }

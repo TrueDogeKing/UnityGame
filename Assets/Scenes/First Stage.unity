@@ -1618,7 +1618,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.625, y: 3.625}
+    oldSize: {x: 2.0625, y: 2}
     newSize: {x: 5.625, y: 3.625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7436,7 +7436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.65
+      value: -1.95
       objectReference: {fileID: 0}
     - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7474,9 +7474,21 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4024453264649570592, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024453264649570592, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -884338367
+      objectReference: {fileID: 0}
     - target: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
       propertyPath: m_Name
       value: Squirrel Beggining
+      objectReference: {fileID: 0}
+    - target: {fileID: 8155814973732508740, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11416,7 +11428,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.625, y: 3.625}
+    oldSize: {x: 2.0625, y: 2}
     newSize: {x: 5.625, y: 3.625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -68849,7 +68861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2769365935336319165, guid: c08c0ec98a520d94e9be77b8b918325e, type: 3}
       propertyPath: m_LocalPosition.z

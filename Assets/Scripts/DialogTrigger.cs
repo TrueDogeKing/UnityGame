@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;  // Added this line to fix the Image class error
 
 [System.Serializable]
 public class DialogueCharacter
@@ -28,6 +29,8 @@ public class DialogTrigger : MonoBehaviour
     public Dialogue dialogue;
 
     private bool spoke = false;
+
+
     public void TriggerDialogue()
     {
         if (spoke)
@@ -44,4 +47,5 @@ public class DialogTrigger : MonoBehaviour
             spoke = true;
         }
     }
+
 }
