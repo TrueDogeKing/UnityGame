@@ -32,6 +32,7 @@ public class DialogManager : MonoBehaviour
 
     private Vector2 targetIconSize = new Vector2(100f, 100f); // Width and Height in pixels
 
+
     private void Awake()
     {
         typingSpeed = typingSpeed / 360;
@@ -161,6 +162,11 @@ public class DialogManager : MonoBehaviour
 
         // Apply the calculated scale to the Image's RectTransform
         icon.rectTransform.sizeDelta = new Vector2(originalWidth * scale, originalHeight * scale);
+    }
+
+    public bool IsDialogueActive()
+    {
+        return isDialogueActive;
     }
 
 }

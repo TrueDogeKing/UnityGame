@@ -33,18 +33,21 @@ public class DialogTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        if (spoke)
-            return;
-
         DialogManager.Instance.StartDialogue(dialogue);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (spoke)
+            return;
+
         if (collision.tag == "Player")
         {
-            TriggerDialogue();
-            spoke = true;
+            if (!DialogManager.Instance.IsDialogueActive())
+            {
+                TriggerDialogue();
+                spoke = true;
+            }
         }
     }
 
