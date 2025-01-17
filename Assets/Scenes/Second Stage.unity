@@ -62401,7 +62401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3598692622724589013, guid: f92f9249d1430164f980628eb97d949f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.36
+      value: -1.76
       objectReference: {fileID: 0}
     - target: {fileID: 3598692622724589013, guid: f92f9249d1430164f980628eb97d949f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -75181,14 +75181,14 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1337630035}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SetVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
