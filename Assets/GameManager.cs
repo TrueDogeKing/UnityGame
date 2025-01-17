@@ -93,7 +93,8 @@ public class GameManager : MonoBehaviour
             lives = PlayerPrefs.GetInt("Lives", 3);  // Default to 0 if not found
             enemiesKilled = PlayerPrefs.GetInt("EnemiesKilled", 0);  // Default to 0 if not found
             Debug.Log("score from previous game:" + currentScore);
-
+            AudioListener.volume = PlayerPrefs.GetFloat("Volume", 0);
+            Debug.Log("AudioListener.volume:" + AudioListener.volume);
             livesText.text = "ECTS: " + lives.ToString();
 
             playerBeer = 100f;
@@ -157,6 +158,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Lives", lives);
             PlayerPrefs.SetInt("CurrentScore", currentScore);
             PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
+            PlayerPrefs.SetFloat("Volume", AudioListener.volume);
             SceneManager.LoadScene("Second Stage");
             SetGameState(GameState.GAME);
             return;
@@ -169,6 +171,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Lives", lives);
             PlayerPrefs.SetInt("CurrentScore", currentScore);
             PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
+            PlayerPrefs.SetFloat("Volume", AudioListener.volume);
             SceneManager.LoadScene("Boss Room");
             SetGameState(GameState.GAME);
             return;
@@ -341,12 +344,15 @@ public class GameManager : MonoBehaviour
     public void OnRestartButtonClicked()
     {
         Time.timeScale = 1.0f; // Reset time scale to normal
+        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
+        AudioListener.pause = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnReturnToMainMenuButtonClicked()
     {
         Time.timeScale = 1.0f;
+        PlayerPrefs.SetFloat("Volume", AudioListener.volume);
         SceneManager.LoadScene("MainMenu");
     }
 
