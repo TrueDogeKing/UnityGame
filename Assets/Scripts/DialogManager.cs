@@ -36,7 +36,7 @@ public class DialogManager : MonoBehaviour
 
     private void Awake()
     {
-        typingSpeed = typingSpeed / 450;
+        typingSpeed = typingSpeed / 500;
         if (Instance == null)
             Instance = this;
 

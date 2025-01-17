@@ -57371,37 +57371,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1b2f619e66825a4f8b06a72f7e658fd, type: 3}
---- !u!1 &42662343
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 42662344}
-  m_Layer: 0
-  m_Name: Hearts
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &42662344
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 42662343}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3596486, y: 3.900309, z: 9.992072}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 835062562}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &57994281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2758784389256961594, guid: cb2c2c5579a1b2749a0505605573e257, type: 3}
@@ -61022,17 +60991,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[0].line
-      value: "Brawo, uda\u0142o ci si\u0119 uciec wyk\u0142adowcy z jego obszaru."
+      value: "Brawo, uda\u0142o ci si\u0119 uciec z jego obszaru!"
       objectReference: {fileID: 0}
     - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].line
-      value: "Teraz ju\u017C nic ci\u0119 nie mo\u017Ce powstrzyma\u0107 przed wzi\u0119ciem
-        udzia\u0142u w lidze flanek."
+      value: "Teraz ju\u017C nic ci\u0119 nie mo\u017Ce powstrzyma\u0107, przed wzi\u0119ciem
+        udzia\u0142u w lidze flanek!"
       objectReference: {fileID: 0}
     - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[2].line
-      value: "Szybko biegnij dalej, turniej zaraz si\u0119 rozpocznie"
+      value: "Szybko biegnij dalej, turniej zaraz si\u0119 rozpocznie!"
       objectReference: {fileID: 0}
+    - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e1ee0c427ad9ecb48976d5fc6fab9c8f, type: 3}
+    - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b774b33729daff44a9f322fbb70ccab, type: 3}
+    - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[2].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 107bd1f3544883145b1a7386f6f894c5, type: 3}
     - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].character.icon
       value: 
@@ -61044,6 +61025,14 @@ PrefabInstance:
     - target: {fileID: 5182741993136008454, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: m_Name
       value: Squirrel Beggining Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883952616682119535, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: m_Size.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883952616682119535, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62408,11 +62397,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 0c2f5e196afe4644d9b1ffb8d644851d, type: 3}
     - target: {fileID: 3598692622724589013, guid: f92f9249d1430164f980628eb97d949f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.69
+      value: -18.65
       objectReference: {fileID: 0}
     - target: {fileID: 3598692622724589013, guid: f92f9249d1430164f980628eb97d949f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.91
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 3598692622724589013, guid: f92f9249d1430164f980628eb97d949f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -62578,8 +62567,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].line
-      value: "Uciekaj st\u0105d zanim tw\xF3rca ci\u0119 tutaj znajdzie. "
+      value: "Uciekaj st\u0105d zanim tw\xF3rca ci\u0119 znajdzie. "
       objectReference: {fileID: 0}
+    - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6057f52e456f78140993fb4a36a15ef2, type: 3}
+    - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 230cefdb70d3b4d48af141bdb5b74e7a, type: 3}
     - target: {fileID: 3702890824161712233, guid: aa0d1fbecb343544b9162e9cc6ab8e91, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].character.icon
       value: 
@@ -63505,7 +63502,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 14.904853
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -63529,12 +63526,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835062557}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.08, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 42662344}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &835120605
@@ -81652,7 +81648,8 @@ MonoBehaviour:
         name: misiu
         icon: {fileID: 21300000, guid: ff92939a627188a43b28b96c0fa7f6e8, type: 3}
       line: "Mo\u017Cesz ucieka\u0107, ale nikt jeszcze nie uciek\u0142 z mojego
-        Obszau."
+        Obszaru."
+      audioClip: {fileID: 8300000, guid: 162c0670e7a75e9498889b13623130d0, type: 3}
 --- !u!61 &1989110800
 BoxCollider2D:
   m_ObjectHideFlags: 0

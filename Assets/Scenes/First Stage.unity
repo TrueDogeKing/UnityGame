@@ -3153,41 +3153,50 @@ MonoBehaviour:
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Hej! S\u0142ysza\u0142em, \u017Ce masz d\u0142ug 12 ects, jeszcze 3
         i odpadniesz z uczelni!"
+      audioClip: {fileID: 8300000, guid: ee882d979d3a48740af66d03c43734db, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: bf32473070f0a094cbf95271c0bb93b1, type: 3}
-      line: "Sk\u0105d to wiesz??"
+      line: "Sk\u0105d to wiesz?"
+      audioClip: {fileID: 8300000, guid: e3928b23b977c7c4ab2fa01b95c800c4, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Nie obawiaj si\u0119 jestem tu \u017Ceby ci pom\xF3c. S\u0142ysza\u0142e\u015B
         mo\u017Ce o TALF?"
+      audioClip: {fileID: 8300000, guid: e886ce7f0a24c9f4396265151588b441, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: ae1f407f8af5d1645bdcdf615aaff01e, type: 3}
       line: Nie
+      audioClip: {fileID: 8300000, guid: 1e6a7163d33bee346a56efc11ae37b89, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
-      line: " TALF to Tajna Akademicka Liga Flanek w kt\xF3rej mo\u017Cesz gra\u0107
-        z wyk\u0142adowcami w flanki o punkty ECTS"
+      line: "TALF to Tajna Akademicka Liga Flanek w kt\xF3rej mo\u017Cesz gra\u0107
+        z wyk\u0142adowcami w flanki o punkty ECTS!"
+      audioClip: {fileID: 8300000, guid: 59e844bc78a531d4194e013030353c9e, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: ae1f407f8af5d1645bdcdf615aaff01e, type: 3}
-      line: Super powiedz mi gdzie to jest
+      line: Serio, gdzie?
+      audioClip: {fileID: 8300000, guid: 1a82fcc5a20cb3c4f8b3b3fa36d1bbbb, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Ok spokojnie. Tylko uwa\u017Caj, droga do wyk\u0142adowc\xF3w nie jest
         prosta a ka\u017Cde potkni\u0119cie b\u0119dzie kosztowa\u0107 ci\u0119 punkt
         ECTS wi\u0119c du\u017Co mo\u017Cesz zyska\u0107 ale jeszcze wi\u0119cej
-        straci\u0107."
+        straci\u0107!"
+      audioClip: {fileID: 8300000, guid: 4d876e2a4dea4c84ab313fb81461f478, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
-      line: "Wystarczy, \u017Ce b\u0119dziesz pod\u0105\u017Ca\u0142 za kuflami piwa
-        i pami\u0119taj o patykach je\u017Celi nie zbierzesz wszystkich 3 patyk\xF3w
-        to nie wpuszcz\u0105 ci\u0119 do pojedynku. Powodzenia"
+      line: "Wystarczy, \u017Ce b\u0119dziesz pod\u0105\u017Ca\u0142 za kuflami piwa,
+        tylko nie wypij ich za du\u017Co, bo nie dotrwasz do flanek. Pami\u0119taj
+        o patykach, je\u015Bli nie zbierzesz wszystkich 3, to nie wpuszcz\u0105 ci\u0119
+        do pojedynku. Powodzenia!"
+      audioClip: {fileID: 8300000, guid: a79880580bc38f147b8a2dd79fbc4d37, type: 3}
 --- !u!1001 &115382031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6175,7 +6184,8 @@ MonoBehaviour:
     - character:
         name: Student
         icon: {fileID: 21300000, guid: 9d96818e7b4ba4fedb4f5e03a7ffe741, type: 3}
-      line: No Gdzie to jest??
+      line: "Kolejny warunek! Ja ju\u017C nie mam na to pieni\u0119dzy!!"
+      audioClip: {fileID: 8300000, guid: 1bee0ecade434f74a810106e04a7b4d2, type: 3}
 --- !u!1001 &208807527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25273,18 +25283,21 @@ MonoBehaviour:
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
-      line: 'Hej! udalo ci sie. '
+      line: Hej! udalo ci sie!
+      audioClip: {fileID: 8300000, guid: 5d3967adb270e0c45a3a212ebcb2735d, type: 3}
     - character:
         name: Lisek Piwoszek
         icon: {fileID: 21300000, guid: bf32473070f0a094cbf95271c0bb93b1, type: 3}
-      line: yep
+      line: Yep
+      audioClip: {fileID: 8300000, guid: c60f1a1de32771249a4212bfa18da380, type: 3}
     - character:
         name: Wiewior
         icon: {fileID: 21300000, guid: f00b4747e194d43ebba76abc9ea17f57, type: 3}
       line: "Teraz pora na \u0142agodne wprowadzenie do mechanik gry. Id\u017A do
-        biblioteki na g\xF3rze jest pok\xF3j wyk\u0142adowcy. Tylko uwa\u017Caj na
-        g\xF3rze rozw\u015Bcieczony student rzuca skryptami a droga tam prowadzi
-        po lataj\u0105cych platformach"
+        biblioteki, na jej ko\u0144cu znajduje si\u0119 pok\xF3j wyk\u0142adowcy.
+        Tylko uwa\u017Caj, na g\xF3rze rozw\u015Bcieczony student rzuca skryptami,
+        a droga tam prowadzi po lataj\u0105cych platformach. Poradzisz sobie!"
+      audioClip: {fileID: 8300000, guid: 2743a62b43e62aa48ada0aefcf67cb37, type: 3}
 --- !u!1001 &1062646173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37513,7 +37526,7 @@ Transform:
   m_GameObject: {fileID: 1551619195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.03, y: -1.939988, z: 0}
+  m_LocalPosition: {x: -19.4, y: -1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
