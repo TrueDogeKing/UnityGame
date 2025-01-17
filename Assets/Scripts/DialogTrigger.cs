@@ -70,8 +70,8 @@ public class DialogTrigger : MonoBehaviour
         {
             if (!DialogManager.Instance.IsDialogueActive())
             {
-                TriggerDialogue();
                 spoke = true;
+                TriggerDialogue();
             }
         }
     }
