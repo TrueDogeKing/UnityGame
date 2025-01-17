@@ -353,6 +353,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         PlayerPrefs.SetFloat("Volume", AudioListener.volume);
+        AudioListener.pause = false;
         SceneManager.LoadScene("MainMenu");
     }
 
