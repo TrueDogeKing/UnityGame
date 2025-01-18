@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.instance.UpdatePoints(50);
             collision.gameObject.SetActive(false);
-            source.PlayOneShot(bonusSound, AudioListener.volume);
+            source.PlayOneShot(bonusSound, AudioListener.volume * 3);
         }
     }
 
@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.UpdateEnemies();
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
                 rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                source.PlayOneShot(deathEagleSound, AudioListener.volume);
+                source.PlayOneShot(deathEagleSound, AudioListener.volume * 3);
             }
             else
             {
@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
             int id = GetColorId(collision);
             GameManager.instance.AddKeys(id);
             collision.gameObject.SetActive(false);
-            source.PlayOneShot(keySound, AudioListener.volume);
+            source.PlayOneShot(keySound, AudioListener.volume * 3);
         }
     }
     void LifePotion(Collider2D collision)
@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.UpdatePlayerLives(true);
         hurt = true;
         StartCoroutine(HurtAnimation());
-        source.PlayOneShot(deathSound, AudioListener.volume);
+        source.PlayOneShot(deathSound, AudioListener.volume*3);
 
     }
 

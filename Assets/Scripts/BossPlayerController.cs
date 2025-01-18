@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using TMPro;
+
 public class BossPlayerController : MonoBehaviour
 {
     private PlayerController playerController;
@@ -17,6 +19,12 @@ public class BossPlayerController : MonoBehaviour
 
     [SerializeField]
     private BossRoomStick stick;
+
+    [SerializeField]
+    private TMP_Text tutorialText; // Reference to the tutorial text UI element
+
+    [SerializeField]
+    private Animator tutorialAnimator;
 
     [SerializeField]
     private Vector2 throwAngleRange = new Vector2(20f, 60f);
@@ -39,6 +47,11 @@ public class BossPlayerController : MonoBehaviour
 
     private Rigidbody2D rigidbody2d;
 
+    private bool playerFirstDrink = false; // Tracks if it's the player's first throw
+    private bool playerFirstThrow = false; // Tracks if it's the player's first throw
+    private bool bossFirstTurn = false; // Tracks if it's the boss's first turn
+    private bool hiddenText = false;
+
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -47,7 +60,10 @@ public class BossPlayerController : MonoBehaviour
 
     void Update()
     {
-
+        if(!hiddenText && playerFirstThrow && bossFirstTurn && playerFirstDrink)
+        {
+            HideTutorialTextAfterDelay(5.0f);
+        }
 
         if (GameManager.instance.currentGameState == GameManager.GameState.PAUSE_MENU)
             return;
@@ -76,6 +92,12 @@ public class BossPlayerController : MonoBehaviour
         if (GameManager.instance.bossFightState != GameManager.BossFightState.AIM_ANGLE)
             return;
 
+        if (!(playerFirstThrow && bossFirstTurn && playerFirstDrink))
+        {
+            tutorialText.text = "Kliknij 'E' gdy pasek bêdzie na zielono.";
+           
+        }
+
         throwForce = 10f;
         UpdateRange(ref throwAngle, ref throwAngleDir, throwAngleSpeed, throwAngleRange.x, throwAngleRange.y);
         UpdateThrowIndicator(true);
@@ -90,6 +112,13 @@ public class BossPlayerController : MonoBehaviour
     {
         if (GameManager.instance.bossFightState != GameManager.BossFightState.AIM_FORCE)
             return;
+
+
+        if (!(playerFirstThrow && bossFirstTurn && playerFirstDrink))
+        {
+            tutorialText.text = "Znowu kliknij 'E' gdy pasek bêdzie na zielono. Je¿eli trafisz za drugim razem gdy pasek bêdzie na zielono to trafisz w puszkê";
+            playerFirstThrow = true;
+        }
 
         UpdateRange(ref throwForce, ref throwForceDir, throwForceSpeed, throwForceRange.x, throwForceRange.y);
         UpdateThrowIndicator(false);
@@ -112,6 +141,8 @@ public class BossPlayerController : MonoBehaviour
         GameManager.instance.bossFightState = GameManager.BossFightState.DRINKING;
         canDrink = can.transform.position.x > 0.5f || can.transform.position.x < -0.5f;
         bossController.InitTurn();
+
+        
     }
 
     void Run()
@@ -121,6 +152,14 @@ public class BossPlayerController : MonoBehaviour
 
         if (GameManager.instance.isPlayersTurn)
             return;
+
+
+        if (!(playerFirstThrow && bossFirstTurn && playerFirstDrink))
+        {
+            tutorialText.text = "Biegnij nastawiæ puszkê i zabraæ patyk!";
+            bossFirstTurn = true; // First boss turn tutorial complete
+        }
+
 
         rigidbody2d.simulated = !isComingBack;
         playerController.Walking();
@@ -156,6 +195,12 @@ public class BossPlayerController : MonoBehaviour
 
         if (!GameManager.instance.isPlayersTurn)
             return;
+
+        if (!playerFirstDrink && canDrink)
+        {
+            tutorialText.text = "Klikaj 'E' jak najszybciej aby piæ. Pierwszy kto skoñczy piwo wygrywa!";
+            playerFirstDrink = true;
+        }
 
         if (canDrink && Input.GetKeyDown(KeyCode.E))
         {
@@ -209,6 +254,34 @@ public class BossPlayerController : MonoBehaviour
             dir *= -1f;
         }
     }
+
+    public void BossThrow()
+    {
+        if (!(playerFirstThrow && bossFirstTurn && playerFirstDrink))
+        {
+            tutorialText.text = "Przygotuj siê do biegu!";
+        }
+    }
+
+    void HideTutorialTextAfterDelay(float delay)
+    {
+        hiddenText = true;
+        StartCoroutine(DisplayCongratsText(delay));
+        StartCoroutine(HideTextCoroutine(delay+3f));
+    }
+
+    IEnumerator HideTextCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        tutorialAnimator.SetTrigger("Hide");
+    }
+
+    IEnumerator DisplayCongratsText(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        tutorialText.text = "Brawo teraz ju¿ umiesz graæ";
+    }
+
 }
 
 // float throwForce = Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), throwAngle.transform.position) * 4.0f;

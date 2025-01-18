@@ -63,6 +63,7 @@ public class DialogTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("detected");
         if (spoke)
             return;
 

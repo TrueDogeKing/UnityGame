@@ -19,6 +19,9 @@ public class BossController : MonoBehaviour
     public bool isComingBack = false;
     public bool canDrink = false;
 
+
+    private BossPlayerController playerController;
+
     [SerializeField]
     private BossRoomStick stick;
 
@@ -30,8 +33,9 @@ public class BossController : MonoBehaviour
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<BossPlayerController>();
     }
-
     void Update()
     {
         if (GameManager.instance.currentGameState == GameManager.GameState.PAUSE_MENU)
@@ -99,6 +103,7 @@ public class BossController : MonoBehaviour
 
     IEnumerator Throw()
     {
+        playerController.BossThrow();
         yield return new WaitForSeconds(0.5f);
         stick.Throw(StickThrowDirection.LEFT, Random.value < throwAccuracy);
         yield return new WaitForSeconds(2.5f);
